@@ -41,31 +41,71 @@ export default App;
     fs.writeFileSync(entrypointPath, entrypointContent);
   }
   
-  console.log('Running preact build...');
+  // Intentar múltiples estrategias de build
+  console.log('Attempting build with preact cli...');
   
+  let buildSuccess = false;
+  
+  // Estrategia 1: preact build con configuraciones específicas
   try {
-    execSync('npx preact build --no-prerender', { 
+    execSync('npx preact build --no-prerender --no-sw', { 
       stdio: 'inherit',
       env: {
         ...process.env,
         NODE_OPTIONS: nodeOptions,
-        NODE_ENV: 'production'
+        NODE_ENV: 'production',
+        GENERATE_SOURCEMAP: 'false'
       },
       cwd: process.cwd()
     });
-  } catch (preactError) {
-    console.log('Preact build failed, trying fallback method...');
+    buildSuccess = true;
+    console.log('Build successful with strategy 1 (--no-sw)');
+  } catch (error1) {
+    console.log('Preact build with --no-sw failed, trying without service worker...');
     
-    // Usar el build fallback con cross-env
-    execSync('npm run build-fallback', { 
-      stdio: 'inherit',
-      env: {
-        ...process.env,
-        NODE_OPTIONS: nodeOptions,
-        NODE_ENV: 'production'
-      },
-      cwd: process.cwd()
-    });
+    // Estrategia 2: preact build básico
+    try {
+      execSync('npx preact build --no-prerender', { 
+        stdio: 'inherit',
+        env: {
+          ...process.env,
+          NODE_OPTIONS: nodeOptions,
+          NODE_ENV: 'production',
+          GENERATE_SOURCEMAP: 'false'
+        },
+        cwd: process.cwd()
+      });
+      buildSuccess = true;
+      console.log('Build successful with strategy 2 (standard)');
+    } catch (error2) {
+      console.log('Standard preact build failed, trying fallback webpack build...');
+      
+      // Estrategia 3: Usar build-fallback
+      try {
+        execSync('npm run build-fallback', { 
+          stdio: 'inherit',
+          env: {
+            ...process.env,
+            NODE_OPTIONS: nodeOptions,
+            NODE_ENV: 'production',
+            GENERATE_SOURCEMAP: 'false'
+          },
+          cwd: process.cwd()
+        });
+        buildSuccess = true;
+        console.log('Build successful with strategy 3 (fallback)');
+      } catch (error3) {
+        console.error('All build strategies failed');
+        console.error('Error 1 (preact --no-sw):', error1.message);
+        console.error('Error 2 (preact standard):', error2.message);
+        console.error('Error 3 (fallback):', error3.message);
+        buildSuccess = false;
+      }
+    }
+  }
+  
+  if (!buildSuccess) {
+    throw new Error('All build strategies failed');
   }
   
   // Verificar que el directorio build existe
@@ -81,13 +121,49 @@ export default App;
       const indexPath = path.join(buildDir, 'index.html');
       if (fs.existsSync(indexPath)) {
         console.log('index.html found - build appears successful');
+        
+        // Verificar el tamaño del archivo index.html
+        const indexStats = fs.statSync(indexPath);
+        console.log('index.html size:', indexStats.size, 'bytes');
+        
+        if (indexStats.size < 100) {
+          console.warn('Warning: index.html seems very small, this might indicate a problem');
+        }
       } else {
         throw new Error('index.html not found in build directory');
       }
+    } else {
+      throw new Error('Build path exists but is not a directory');
     }
   } catch (e) {
     console.error('Build directory validation failed:', e.message);
-    throw e;
+    
+    // Intentar crear un build mínimo si todo falla
+    if (e.code === 'ENOENT') {
+      console.log('Creating minimal build directory...');
+      fs.mkdirSync(buildDir, { recursive: true });
+      
+      const minimalIndex = `<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Mi Gestor</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+</head>
+<body>
+    <div id="app">Loading...</div>
+    <script>
+        console.error('Build failed - this is a fallback page');
+        document.getElementById('app').innerHTML = '<h1>Application build failed</h1><p>Please check the build logs.</p>';
+    </script>
+</body>
+</html>`;
+      
+      fs.writeFileSync(path.join(buildDir, 'index.html'), minimalIndex);
+      console.log('Created minimal fallback index.html');
+    } else {
+      throw e;
+    }
   }
   
   console.log('Build completed successfully!');

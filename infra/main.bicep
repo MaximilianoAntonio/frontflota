@@ -14,7 +14,7 @@ param resourceGroupName string
 param apiBaseUrl string = 'https://apissvq.azurewebsites.net/api'
 
 // Variables
-var resourceToken = toLower(uniqueString(subscription().id, environmentName, location))
+var resourceToken = toLower(uniqueString(subscription().id, resourceGroup().id, environmentName))
 var tags = {
   'azd-env-name': environmentName
   'azd-service-name': 'frontflota-web'
@@ -210,6 +210,7 @@ resource webAppDiagnostics 'Microsoft.Insights/diagnosticSettings@2021-05-01-pre
 output AZURE_LOCATION string = location
 output AZURE_TENANT_ID string = tenant().tenantId
 output AZURE_RESOURCE_GROUP string = resourceGroupName
+output RESOURCE_GROUP_ID string = resourceGroup().id
 
 output SERVICE_FRONTFLOTA_WEB_IDENTITY_PRINCIPAL_ID string = userAssignedIdentity.properties.principalId
 output SERVICE_FRONTFLOTA_WEB_NAME string = webApp.name

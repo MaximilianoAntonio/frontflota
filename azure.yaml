@@ -15,20 +15,3 @@ services:
     project: .
     language: js
     host: appservice
-    dist: build
-    hooks:
-      prebuild:
-        shell: pwsh
-        run: |
-          Write-Host "Installing dependencies..."
-          npm install
-        continueOnError: false
-        interactive: false
-      
-      predeploy:
-        shell: pwsh
-        run: |
-          Write-Host "Building application..."
-          npm run build
-        continueOnError: false
-        interactive: false

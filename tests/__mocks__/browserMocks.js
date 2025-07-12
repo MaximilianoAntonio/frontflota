@@ -4,7 +4,7 @@
  */
 
 // Polyfills para APIs que faltan en JSDOM
-import { TextEncoder, TextDecoder } from 'util';
+const { TextEncoder, TextDecoder } = require('util');
 
 // Configurar TextEncoder y TextDecoder globalmente
 global.TextEncoder = TextEncoder;
@@ -15,13 +15,18 @@ if (!global.fetch) {
   global.fetch = jest.fn(() =>
     Promise.resolve({
       json: () => Promise.resolve({}),
+      text: () => Promise.resolve(''),
+      ok: true,
+      status: 200,
     })
   );
 }
 
 // Mock para Canvas
-HTMLCanvasElement.prototype.getContext = jest.fn();
-HTMLCanvasElement.prototype.toDataURL = jest.fn();
+if (typeof HTMLCanvasElement !== 'undefined') {
+  HTMLCanvasElement.prototype.getContext = jest.fn();
+  HTMLCanvasElement.prototype.toDataURL = jest.fn();
+}
 
 // Mock para ResizeObserver
 global.ResizeObserver = jest.fn().mockImplementation(() => ({
@@ -36,6 +41,10 @@ global.IntersectionObserver = jest.fn().mockImplementation(() => ({
   unobserve: jest.fn(),
   disconnect: jest.fn(),
 }));
+
+// Mock para URL.createObjectURL
+global.URL.createObjectURL = jest.fn(() => 'mock-url');
+global.URL.revokeObjectURL = jest.fn();
 
 /*
 // Mocks localStorage

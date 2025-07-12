@@ -7,17 +7,34 @@ export default (config, env, helpers) => {
   try {
     const babelLoaders = helpers.getLoadersByName(config, 'babel-loader');
     if (babelLoaders && babelLoaders.length > 0) {
-      const { rule } = babelLoaders[0];
-      if (rule && rule.options) {
-        rule.options.plugins = rule.options.plugins || [];
-        rule.options.plugins.push(
-          '@babel/plugin-transform-class-properties',
-          '@babel/plugin-transform-object-rest-spread'
-        );
-      }
+      babelLoaders.forEach(({ rule }) => {
+        if (rule && rule.options) {
+          rule.options.plugins = rule.options.plugins || [];
+          rule.options.plugins.push(
+            '@babel/plugin-transform-class-properties',
+            '@babel/plugin-transform-object-rest-spread',
+            '@babel/plugin-transform-optional-chaining',
+            '@babel/plugin-transform-nullish-coalescing-operator'
+          );
+        }
+        
+        // Extender para incluir archivos .mjs
+        if (rule.test) {
+          rule.test = /\.(js|jsx|mjs)$/;
+        }
+      });
     }
   } catch (error) {
     console.warn('Could not configure Babel plugins:', error.message);
+  }
+  
+  // Asegurar que los módulos de framer-motion sean transpilados
+  if (config.module && config.module.rules) {
+    config.module.rules.forEach(rule => {
+      if (rule.exclude && rule.exclude.toString().includes('node_modules')) {
+        rule.exclude = /node_modules\/(?!(framer-motion))/;
+      }
+    });
   }
   
   // Disable critters plugin that's causing CSS parsing issues

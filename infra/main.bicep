@@ -88,7 +88,7 @@ resource appServicePlan 'Microsoft.Web/serverfarms@2024-04-01' = {
     tier: 'Basic'
   }
   properties: {
-    reserved: false
+    reserved: true  // true para Linux, false para Windows
   }
 }
 
@@ -114,6 +114,11 @@ resource webApp 'Microsoft.Web/sites@2024-04-01' = {
       minTlsVersion: '1.2'
       scmMinTlsVersion: '1.2'
       ftpsState: 'FtpsOnly'
+      linuxFxVersion: 'NODE|18-lts'  // Especificar versión de Node.js para Linux
+      requestTracingEnabled: true
+      httpLoggingEnabled: true
+      detailedErrorLoggingEnabled: true
+      healthCheckPath: '/'
       appSettings: [
         {
           name: 'API_BASE_URL'
@@ -132,8 +137,12 @@ resource webApp 'Microsoft.Web/sites@2024-04-01' = {
           value: '~18'
         }
         {
+          name: 'SCM_DO_BUILD_DURING_DEPLOYMENT'
+          value: 'true'
+        }
+        {
           name: 'WEBSITE_RUN_FROM_PACKAGE'
-          value: '1'
+          value: '0'  // Cambiado de '1' a '0' para permitir builds en tiempo de despliegue
         }
       ]
       cors: {
@@ -145,12 +154,6 @@ resource webApp 'Microsoft.Web/sites@2024-04-01' = {
         'index.htm'
         'default.htm'
       ]
-      netFrameworkVersion: 'v4.0'
-      nodeVersion: '~18'
-      requestTracingEnabled: true
-      httpLoggingEnabled: true
-      detailedErrorLoggingEnabled: true
-      healthCheckPath: '/'
     }
   }
 }

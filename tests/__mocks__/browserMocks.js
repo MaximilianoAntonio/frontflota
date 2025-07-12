@@ -1,21 +1,42 @@
 // Mock Browser API's which are not supported by JSDOM, e.g. ServiceWorker, LocalStorage
-/**
- * An example how to mock localStorage is given below 👇
- */
+const { TextEncoder, TextDecoder } = require('util');
 
-/*
-// Mocks localStorage
-const localStorageMock = (function() {
-	let store = {};
+// Configurar TextEncoder y TextDecoder globalmente
+global.TextEncoder = TextEncoder;
+global.TextDecoder = TextDecoder;
 
-	return {
-		getItem: (key) => store[key] || null,
-		setItem: (key, value) => store[key] = value.toString(),
-		clear: () => store = {}
-	};
+// Mock para fetch si no está disponible
+if (!global.fetch) {
+  global.fetch = jest.fn(() =>
+    Promise.resolve({
+      json: () => Promise.resolve({}),
+      text: () => Promise.resolve(''),
+      ok: true,
+      status: 200,
+    })
+  );
+}
 
-})();
+// Mock para Canvas APIs
+if (typeof HTMLCanvasElement !== 'undefined') {
+  HTMLCanvasElement.prototype.getContext = jest.fn();
+  HTMLCanvasElement.prototype.toDataURL = jest.fn();
+}
 
-Object.defineProperty(window, 'localStorage', {
-	value: localStorageMock
-}); */
+// Mock para ResizeObserver
+global.ResizeObserver = jest.fn().mockImplementation(() => ({
+  observe: jest.fn(),
+  unobserve: jest.fn(),
+  disconnect: jest.fn(),
+}));
+
+// Mock para IntersectionObserver
+global.IntersectionObserver = jest.fn().mockImplementation(() => ({
+  observe: jest.fn(),
+  unobserve: jest.fn(),
+  disconnect: jest.fn(),
+}));
+
+// Mock para URL.createObjectURL
+global.URL.createObjectURL = jest.fn(() => 'mock-url');
+global.URL.revokeObjectURL = jest.fn();

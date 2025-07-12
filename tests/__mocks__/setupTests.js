@@ -1,6 +1,10 @@
-import { configure } from 'enzyme';
-import Adapter from 'enzyme-adapter-preact-pure';
+// Configuración básica para Jest
+// Sin enzyme por ahora para evitar problemas de compatibilidad
 
-configure({
-	adapter: new Adapter(),
-});
+// Mock adicionales si son necesarios
+global.console = {
+  ...console,
+  // Silenciar warnings específicos si es necesario
+  warn: jest.fn(),
+  error: jest.fn(),
+};

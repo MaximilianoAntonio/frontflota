@@ -1,7 +1,18 @@
-export default (config) => {
+export default (config, env, helpers) => {
   if (config.devServer) {
     config.devServer.host = '0.0.0.0';
   }
+  
+  // Configurar Babel para manejar propiedades de clase y spread operator
+  const { rule } = helpers.getLoadersByName(config, 'babel-loader')[0];
+  rule.options = {
+    ...rule.options,
+    plugins: [
+      ...(rule.options.plugins || []),
+      '@babel/plugin-transform-class-properties',
+      '@babel/plugin-proposal-object-rest-spread'
+    ]
+  };
   
   // Disable critters plugin that's causing CSS parsing issues
   config.plugins = config.plugins.filter(plugin => 

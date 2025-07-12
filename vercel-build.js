@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-// Script de build personalizado para Vercel que maneja problemas de ESM y entrypoint
+// Script de build personalizado para Vercel que evita problemas con preact-cli-entrypoint
 const { execSync } = require('child_process');
 const path = require('path');
 const fs = require('fs');
@@ -14,19 +14,59 @@ try {
   const nodeOptions = '--openssl-legacy-provider --max-old-space-size=4096';
   
   console.log('NODE_OPTIONS:', nodeOptions);
+  
+  // Crear un entrypoint temporal para resolver el problema de preact-cli-entrypoint
+  const entrypointPath = path.join(process.cwd(), 'node_modules', 'preact-cli', 'src', 'lib', 'preact-cli-entrypoint.js');
+  const entrypointDir = path.dirname(entrypointPath);
+  
+  // Crear el directorio si no existe
+  if (!fs.existsSync(entrypointDir)) {
+    fs.mkdirSync(entrypointDir, { recursive: true });
+  }
+  
+  // Crear el archivo entrypoint que falta
+  if (!fs.existsSync(entrypointPath)) {
+    console.log('Creating missing preact-cli-entrypoint...');
+    const entrypointContent = `
+// Temporary entrypoint for Vercel build
+import { render } from 'preact';
+import App from '${path.resolve(process.cwd(), 'src/index.js')}';
+
+if (typeof window !== 'undefined') {
+  render(<App />, document.body);
+}
+
+export default App;
+`;
+    fs.writeFileSync(entrypointPath, entrypointContent);
+  }
+  
   console.log('Running preact build...');
   
-  // Ejecutar preact build directamente con los parámetros apropiados
-  execSync('npx preact build --no-prerender', { 
-    stdio: 'inherit',
-    env: {
-      ...process.env,
-      NODE_OPTIONS: nodeOptions,
-      // Evitar problemas con ESM en Vercel
-      NODE_ENV: 'production'
-    },
-    cwd: process.cwd()
-  });
+  try {
+    execSync('npx preact build --no-prerender', { 
+      stdio: 'inherit',
+      env: {
+        ...process.env,
+        NODE_OPTIONS: nodeOptions,
+        NODE_ENV: 'production'
+      },
+      cwd: process.cwd()
+    });
+  } catch (preactError) {
+    console.log('Preact build failed, trying fallback method...');
+    
+    // Usar el build fallback con cross-env
+    execSync('npm run build-fallback', { 
+      stdio: 'inherit',
+      env: {
+        ...process.env,
+        NODE_OPTIONS: nodeOptions,
+        NODE_ENV: 'production'
+      },
+      cwd: process.cwd()
+    });
+  }
   
   // Verificar que el directorio build existe
   const buildDir = path.join(process.cwd(), 'build');

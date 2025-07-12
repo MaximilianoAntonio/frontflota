@@ -15,7 +15,19 @@
       "dest": "/index.html"
     }
   ],
+  "buildCommand": "npm run vercel-build",
   "env": {
-    "NODE_OPTIONS": "--openssl-legacy-provider"
+    "NODE_OPTIONS": "--openssl-legacy-provider --max-old-space-size=4096"
+  },
+  "functions": {
+    "build": {
+      "memory": 3008,
+      "maxDuration": 30
+    }
+  },
+  "build": {
+    "env": {
+      "NODE_VERSION": "18.18.0"
+    }
   }
 }

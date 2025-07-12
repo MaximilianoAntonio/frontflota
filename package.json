@@ -45,7 +45,6 @@
     "jspdf-autotable": "^5.0.2",
     "jsqr": "^1.4.0",
     "leaflet": "^1.9.4",
-    "openssl": "^2.0.0",
     "preact": "^10.26.9",
     "preact-render-to-string": "^5.2.6",
     "preact-router": "^3.2.1"

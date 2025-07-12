@@ -8,7 +8,8 @@
     "npm": ">=8.0.0"
   },
   "scripts": {
-    "build": "cross-env NODE_OPTIONS=\"--openssl-legacy-provider --max-old-space-size=4096\" preact build --no-prerender",
+    "build": "node vercel-build.js",
+    "build-fallback": "cross-env NODE_OPTIONS=\"--openssl-legacy-provider --max-old-space-size=4096\" preact build --no-prerender",
     "serve": "sirv build --port 5000 --cors --single --host",
     "dev": "cross-env NODE_OPTIONS=--openssl-legacy-provider preact watch --host 0.0.0.0 --port 8080",
     "lint": "eslint src",

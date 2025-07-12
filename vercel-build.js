@@ -14,69 +14,19 @@ try {
   const nodeOptions = '--openssl-legacy-provider --max-old-space-size=4096';
   
   console.log('NODE_OPTIONS:', nodeOptions);
-  
-  // Crear el archivo entrypoint si no existe
-  const entrypointPath = path.join(__dirname, 'src', 'index.js');
-  if (!fs.existsSync(entrypointPath)) {
-    console.log('Creating entrypoint file...');
-    const srcDir = path.join(__dirname, 'src');
-    if (!fs.existsSync(srcDir)) {
-      fs.mkdirSync(srcDir, { recursive: true });
-    }
-    
-    // Crear un index.js básico si no existe
-    const entrypointContent = `import { render } from 'preact';
-import App from './components/app';
-import './style/index.css';
-
-export default App;
-
-if (typeof window !== 'undefined') {
-  render(<App />, document.getElementById('app'));
-}`;
-    
-    fs.writeFileSync(entrypointPath, entrypointContent);
-  }
-  
   console.log('Running preact build...');
   
-  // Intentar con preact build primero
-  try {
-    execSync('npx preact build --no-prerender', { 
-      stdio: 'inherit',
-      env: {
-        ...process.env,
-        NODE_OPTIONS: nodeOptions
-      },
-      cwd: process.cwd()
-    });
-  } catch (preactError) {
-    console.log('Preact build failed, trying alternative approach...');
-    
-    // Si falla, intentar con webpack directamente
-    try {
-      execSync('npx webpack --mode=production', { 
-        stdio: 'inherit',
-        env: {
-          ...process.env,
-          NODE_OPTIONS: nodeOptions
-        },
-        cwd: process.cwd()
-      });
-    } catch (webpackError) {
-      console.log('Webpack build failed, trying npm run build...');
-      
-      // Como último recurso, usar npm run build directamente
-      execSync('npm run build', { 
-        stdio: 'inherit',
-        env: {
-          ...process.env,
-          NODE_OPTIONS: nodeOptions
-        },
-        cwd: process.cwd()
-      });
-    }
-  }
+  // Ejecutar preact build directamente con los parámetros apropiados
+  execSync('npx preact build --no-prerender', { 
+    stdio: 'inherit',
+    env: {
+      ...process.env,
+      NODE_OPTIONS: nodeOptions,
+      // Evitar problemas con ESM en Vercel
+      NODE_ENV: 'production'
+    },
+    cwd: process.cwd()
+  });
   
   // Verificar que el directorio build existe
   const buildDir = path.join(process.cwd(), 'build');
@@ -86,9 +36,17 @@ if (typeof window !== 'undefined') {
       console.log('Build directory created successfully!');
       const files = fs.readdirSync(buildDir);
       console.log('Build files:', files.slice(0, 10).join(', '), files.length > 10 ? '...' : '');
+      
+      // Verificar que index.html existe
+      const indexPath = path.join(buildDir, 'index.html');
+      if (fs.existsSync(indexPath)) {
+        console.log('index.html found - build appears successful');
+      } else {
+        throw new Error('index.html not found in build directory');
+      }
     }
   } catch (e) {
-    console.error('Build directory not found!');
+    console.error('Build directory validation failed:', e.message);
     throw e;
   }
   

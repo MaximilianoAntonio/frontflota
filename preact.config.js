@@ -4,15 +4,21 @@ export default (config, env, helpers) => {
   }
   
   // Configurar Babel para manejar propiedades de clase y spread operator
-  const { rule } = helpers.getLoadersByName(config, 'babel-loader')[0];
-  rule.options = {
-    ...rule.options,
-    plugins: [
-      ...(rule.options.plugins || []),
-      '@babel/plugin-transform-class-properties',
-      '@babel/plugin-proposal-object-rest-spread'
-    ]
-  };
+  try {
+    const babelLoaders = helpers.getLoadersByName(config, 'babel-loader');
+    if (babelLoaders && babelLoaders.length > 0) {
+      const { rule } = babelLoaders[0];
+      if (rule && rule.options) {
+        rule.options.plugins = rule.options.plugins || [];
+        rule.options.plugins.push(
+          '@babel/plugin-transform-class-properties',
+          '@babel/plugin-transform-object-rest-spread'
+        );
+      }
+    }
+  } catch (error) {
+    console.warn('Could not configure Babel plugins:', error.message);
+  }
   
   // Disable critters plugin that's causing CSS parsing issues
   config.plugins = config.plugins.filter(plugin => 

@@ -1,0 +1,34 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/Azure/azure-dev/main/schemas/v1.0/azure.yaml.json
+
+name: frontflota
+metadata:
+  template: frontflota-web@0.0.1-beta
+
+workflows:
+  up:
+    steps:
+      - azd: provision
+      - azd: deploy
+
+services:
+  frontflota-web:
+    project: .
+    language: js
+    host: appservice
+    dist: build
+    hooks:
+      prebuild:
+        shell: pwsh
+        run: |
+          Write-Host "Installing dependencies..."
+          npm install
+        continueOnError: false
+        interactive: false
+      
+      predeploy:
+        shell: pwsh
+        run: |
+          Write-Host "Building application..."
+          npm run build
+        continueOnError: false
+        interactive: false

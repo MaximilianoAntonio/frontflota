@@ -151,7 +151,7 @@ export function exportAsignacionesPDF(asignaciones) {
       8: { cellWidth: 20 }  // Estado
     },
     margin: { top: 20, left: 10, right: 10 },
-    didDrawPage() {
+    didDrawPage: function (data) {
       // Título en cada página
       doc.setFontSize(16);
       doc.setTextColor(40);

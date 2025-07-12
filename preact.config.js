@@ -1,15 +1,12 @@
-module.exports = (config) => {
+export default (config) => {
   if (config.devServer) {
     config.devServer.host = '0.0.0.0';
   }
   
-  // Disable problematic plugins
-  config.plugins = config.plugins.filter(plugin => {
-    const pluginName = plugin.constructor.name;
-    return pluginName !== 'Critters' && 
-           pluginName !== 'WebpackManifestPlugin' &&
-           pluginName !== 'ManifestPlugin';
-  });
+  // Disable critters plugin that's causing CSS parsing issues
+  config.plugins = config.plugins.filter(plugin => 
+    plugin.constructor.name !== 'Critters'
+  );
 
   // Optimización de performance: Configurar límites de tamaño de archivos
   config.performance = {

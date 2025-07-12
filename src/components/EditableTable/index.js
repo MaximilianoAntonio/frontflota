@@ -20,7 +20,7 @@ const EditableTable = ({
     <div class={`table-container ${className}`}>
       {showTip && (
         <div class={style.tableTip}>
-          <i class="fas fa-info-circle" />
+          <i class="fas fa-info-circle"></i>
           <span>{tipMessage}</span>
         </div>
       )}

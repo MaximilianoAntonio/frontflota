@@ -579,7 +579,7 @@ class ConductoresPage extends Component {
     return (
       <div class="table-container">
         <div class={style.tableTip}>
-          <i class="fas fa-info-circle" />
+          <i class="fas fa-info-circle"></i>
           <span>Haz clic en cualquier fila para ver los detalles y horarios del conductor</span>
         </div>
         

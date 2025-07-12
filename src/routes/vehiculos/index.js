@@ -106,7 +106,7 @@ const Vehiculos = () => {
         <div class="table-container">
             {/* Tip informativo */}
             <div class={style.tableTip}>
-                <i class="fas fa-info-circle" />
+                <i class="fas fa-info-circle"></i>
                 <span>Haz clic en cualquier fila para ver los detalles del vehículo y editarlo</span>
             </div>
             

@@ -1,5 +1,6 @@
 import { h } from 'preact';
 import { useState, useEffect } from 'preact/hooks';
+import style from './style.css';
 
 const VehiculoForm = ({ vehiculo, onSave, onUpdate, onCancel }) => {
     const [marca, setMarca] = useState('');

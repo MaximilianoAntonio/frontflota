@@ -33,26 +33,26 @@ export const normalizeEstado = (estado) => {
     
     const estadoLower = estado.toLowerCase().trim();
     const mapeoEstados = {
-        pendiente: 'pendiente_auto',
-        pendiente_auto: 'pendiente_auto',
-        en_curso: 'activa',
+        'pendiente': 'pendiente_auto',
+        'pendiente_auto': 'pendiente_auto',
+        'en_curso': 'activa',
         'en curso': 'activa',
-        encurso: 'activa',
-        activa: 'activa',
-        programada: 'programada',
-        finalizada: 'completada',
-        finalizado: 'completada',
-        completada: 'completada',
-        completado: 'completada',
-        terminada: 'completada',
-        terminado: 'completada',
-        cancelada: 'cancelada',
-        cancelado: 'cancelada',
-        anulada: 'cancelada',
-        anulado: 'cancelada',
-        aprobada: 'programada',
-        aprobado: 'programada',
-        fallo_auto: 'fallo_auto'
+        'encurso': 'activa',
+        'activa': 'activa',
+        'programada': 'programada',
+        'finalizada': 'completada',
+        'finalizado': 'completada',
+        'completada': 'completada',
+        'completado': 'completada',
+        'terminada': 'completada',
+        'terminado': 'completada',
+        'cancelada': 'cancelada',
+        'cancelado': 'cancelada',
+        'anulada': 'cancelada',
+        'anulado': 'cancelada',
+        'aprobada': 'programada',
+        'aprobado': 'programada',
+        'fallo_auto': 'fallo_auto'
     };
     
     return mapeoEstados[estadoLower] || 'pendiente_auto';

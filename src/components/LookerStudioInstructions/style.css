@@ -1,0 +1,273 @@
+/* LookerStudioInstructions/style.css */
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.6);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    padding: 2rem;
+}
+
+.modal {
+    background: var(--card-background, #ffffff);
+    border-radius: 12px;
+    width: 100%;
+    max-width: 800px;
+    max-height: 90vh;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem 2rem;
+    border-bottom: 1px solid var(--border-color, #e0e0e0);
+}
+
+.header h2 {
+    margin: 0;
+    color: var(--text-primary, #333);
+    font-size: 1.3rem;
+    font-weight: 600;
+}
+
+.closeButton {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    color: var(--text-muted, #6c757d);
+    cursor: pointer;
+    padding: 0.5rem;
+    border-radius: 6px;
+    transition: all 0.2s ease;
+}
+
+.closeButton:hover {
+    background: var(--danger-light, rgba(220, 53, 69, 0.1));
+    color: var(--danger, #dc3545);
+}
+
+.body {
+    flex: 1;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+.stepNavigation {
+    display: flex;
+    padding: 1rem 2rem 0;
+    gap: 0.5rem;
+    overflow-x: auto;
+}
+
+.stepButton {
+    padding: 0.5rem 1rem;
+    border: 1px solid var(--border-color, #ddd);
+    background: var(--background-light, #f8f9fa);
+    color: var(--text-secondary, #666);
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    white-space: nowrap;
+    font-size: 0.85rem;
+    font-weight: 500;
+}
+
+.stepButton:hover {
+    background: var(--primary-light, rgba(0, 123, 255, 0.1));
+    border-color: var(--primary, #007bff);
+    color: var(--primary, #007bff);
+}
+
+.stepButton.active {
+    background: var(--primary, #007bff);
+    border-color: var(--primary, #007bff);
+    color: white;
+}
+
+.stepContent {
+    flex: 1;
+    padding: 2rem;
+    overflow-y: auto;
+}
+
+.stepContent h3 {
+    margin: 0 0 1rem 0;
+    color: var(--text-primary, #333);
+    font-size: 1.1rem;
+    font-weight: 600;
+}
+
+.stepContent p {
+    margin: 0 0 1rem 0;
+    color: var(--text-secondary, #666);
+    line-height: 1.6;
+}
+
+.stepContent ul {
+    margin: 0 0 1rem 0;
+    padding-left: 1.5rem;
+}
+
+.stepContent li {
+    margin-bottom: 0.5rem;
+    color: var(--text-secondary, #666);
+    line-height: 1.5;
+}
+
+.codeBlock {
+    background: var(--background-dark, #f1f3f4);
+    border: 1px solid var(--border-color, #e0e0e0);
+    border-radius: 6px;
+    padding: 1rem;
+    margin: 1rem 0;
+    font-family: 'Courier New', monospace;
+    font-size: 0.9rem;
+    overflow-x: auto;
+}
+
+.codeBlock code {
+    color: var(--text-primary, #333);
+    background: none;
+    padding: 0;
+}
+
+.link {
+    color: var(--primary, #007bff);
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.link:hover {
+    text-decoration: underline;
+}
+
+.optionCard {
+    background: var(--background-light, #f8f9fa);
+    border: 1px solid var(--border-color, #e0e0e0);
+    border-radius: 8px;
+    padding: 1rem;
+    margin: 1rem 0;
+}
+
+.optionCard h4 {
+    margin: 0 0 0.5rem 0;
+    color: var(--text-primary, #333);
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+.optionCard p {
+    margin: 0 0 0.5rem 0;
+    font-size: 0.9rem;
+}
+
+.chartTypes {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+    margin: 1rem 0;
+}
+
+.chartType {
+    background: var(--background-light, #f8f9fa);
+    border: 1px solid var(--border-color, #e0e0e0);
+    border-radius: 8px;
+    padding: 1rem;
+}
+
+.chartType strong {
+    color: var(--text-primary, #333);
+    font-size: 0.9rem;
+    display: block;
+    margin-bottom: 0.5rem;
+}
+
+.chartType p {
+    margin: 0;
+    font-size: 0.8rem;
+    color: var(--text-muted, #6c757d);
+}
+
+.tip {
+    background: var(--info-light, rgba(23, 162, 184, 0.1));
+    border: 1px solid var(--info, #17a2b8);
+    border-radius: 6px;
+    padding: 1rem;
+    margin: 1rem 0;
+    font-size: 0.9rem;
+}
+
+.footer {
+    padding: 1.5rem 2rem;
+    border-top: 1px solid var(--border-color, #e0e0e0);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+}
+
+.navigation {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.stepIndicator {
+    font-size: 0.9rem;
+    color: var(--text-muted, #6c757d);
+    font-weight: 500;
+}
+
+.actions {
+    display: flex;
+    gap: 0.5rem;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .overlay {
+        padding: 1rem;
+    }
+    
+    .header {
+        padding: 1rem;
+    }
+    
+    .stepContent {
+        padding: 1rem;
+    }
+    
+    .footer {
+        padding: 1rem;
+        flex-direction: column;
+        gap: 1rem;
+    }
+    
+    .navigation {
+        order: 2;
+    }
+    
+    .actions {
+        order: 1;
+        width: 100%;
+    }
+    
+    .actions a {
+        flex: 1;
+        text-align: center;
+    }
+    
+    .chartTypes {
+        grid-template-columns: 1fr;
+    }
+}

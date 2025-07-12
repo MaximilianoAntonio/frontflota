@@ -1,0 +1,388 @@
+/* StaticMap Styles */
+.staticMap {
+    width: 100%;
+    min-height: 500px;
+    background: white;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.mapHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 20px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+}
+
+.headerLeft h3 {
+    margin: 0 0 4px 0;
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.headerLeft p {
+    margin: 0;
+    font-size: 14px;
+    opacity: 0.9;
+}
+
+.viewToggle {
+    display: flex;
+    gap: 8px;
+}
+
+.toggleButton {
+    padding: 8px 16px;
+    border: none;
+    background: rgba(255,255,255,0.2);
+    color: white;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: all 0.2s ease;
+}
+
+.toggleButton:hover {
+    background: rgba(255,255,255,0.3);
+}
+
+.toggleButton.active {
+    background: white;
+    color: #667eea;
+    font-weight: 600;
+}
+
+/* Estadísticas */
+.statsContainer {
+    display: flex;
+    gap: 16px;
+    padding: 20px;
+    background: #f8f9fa;
+    border-bottom: 1px solid #e9ecef;
+}
+
+.statCard {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 16px;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.statNumber {
+    font-size: 24px;
+    font-weight: 700;
+    color: #2c3e50;
+    margin-bottom: 4px;
+}
+
+.statLabel {
+    font-size: 12px;
+    color: #6c757d;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* Vista de Lista */
+.listView {
+    padding: 20px;
+}
+
+.listHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.listHeader h4 {
+    margin: 0;
+    color: #2c3e50;
+}
+
+.counter {
+    background: #e3f2fd;
+    color: #1976d2;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.assignmentsList {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.assignmentCard {
+    border: 1px solid #e9ecef;
+    border-radius: 8px;
+    padding: 16px;
+    background: white;
+    transition: all 0.2s ease;
+}
+
+.assignmentCard:hover {
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    border-color: #667eea;
+}
+
+.assignmentHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+}
+
+.assignmentTitle {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.conductorName {
+    font-weight: 600;
+    color: #2c3e50;
+    font-size: 16px;
+}
+
+.vehiculo {
+    color: #6c757d;
+    font-size: 14px;
+}
+
+.estado {
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.estado.ruta {
+    background: #fff3cd;
+    color: #856404;
+}
+
+.estado.completada {
+    background: #d4edda;
+    color: #155724;
+}
+
+.estado.pendiente {
+    background: #f8d7da;
+    color: #721c24;
+}
+
+.routeInfo {
+    margin: 16px 0;
+}
+
+.location {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    margin-bottom: 8px;
+}
+
+.locationLabel {
+    font-size: 12px;
+    font-weight: 600;
+    color: #6c757d;
+    text-transform: uppercase;
+}
+
+.locationValue {
+    color: #2c3e50;
+    margin-bottom: 2px;
+}
+
+.coordinates {
+    font-size: 11px;
+    color: #6c757d;
+    font-family: monospace;
+}
+
+.routeArrow {
+    text-align: center;
+    color: #667eea;
+    font-size: 16px;
+    margin: 8px 0;
+}
+
+.assignmentFooter {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 16px;
+    padding-top: 12px;
+    border-top: 1px solid #e9ecef;
+}
+
+.fecha {
+    font-size: 12px;
+    color: #6c757d;
+}
+
+.trackButton {
+    padding: 6px 12px;
+    background: #667eea;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 12px;
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+
+.trackButton:hover {
+    background: #5a6fd8;
+}
+
+/* Vista de Tabla */
+.tableView {
+    padding: 20px;
+    overflow-x: auto;
+}
+
+.assignmentsTable {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.assignmentsTable th {
+    background: #f8f9fa;
+    padding: 12px;
+    text-align: left;
+    font-weight: 600;
+    color: #2c3e50;
+    border-bottom: 2px solid #e9ecef;
+    font-size: 12px;
+    text-transform: uppercase;
+}
+
+.assignmentsTable td {
+    padding: 12px;
+    border-bottom: 1px solid #e9ecef;
+    color: #2c3e50;
+}
+
+.assignmentsTable tr:hover {
+    background: #f8f9fa;
+}
+
+.locationCell {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.locationCell small {
+    font-family: monospace;
+    color: #6c757d;
+}
+
+.smallButton {
+    padding: 4px 8px;
+    background: #667eea;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 12px;
+    transition: background 0.2s ease;
+}
+
+.smallButton:hover {
+    background: #5a6fd8;
+}
+
+/* Estado vacío */
+.emptyState {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 60px 20px;
+    text-align: center;
+}
+
+.emptyIcon {
+    font-size: 64px;
+    margin-bottom: 16px;
+    opacity: 0.6;
+}
+
+.emptyState h3 {
+    margin: 0 0 8px 0;
+    color: #2c3e50;
+}
+
+.emptyState p {
+    margin: 0;
+    color: #6c757d;
+}
+
+/* Footer */
+.mapFooter {
+    padding: 16px 20px;
+    background: #f8f9fa;
+    border-top: 1px solid #e9ecef;
+    text-align: center;
+}
+
+.mapFooter p {
+    margin: 0 0 8px 0;
+    font-size: 14px;
+    color: #2c3e50;
+}
+
+.mapFooter small {
+    color: #6c757d;
+    font-size: 12px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .mapHeader {
+        flex-direction: column;
+        gap: 12px;
+        text-align: center;
+    }
+
+    .statsContainer {
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    .assignmentHeader {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+    }
+
+    .assignmentFooter {
+        flex-direction: column;
+        gap: 8px;
+        align-items: stretch;
+    }
+
+    .trackButton {
+        width: 100%;
+    }
+
+    .tableView {
+        overflow-x: scroll;
+    }
+}

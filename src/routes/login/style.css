@@ -1,0 +1,56 @@
+.loginPage {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--bg-main); /* Use global background */
+    z-index: 1000; /* Ensure it's on top */
+}
+
+.loginForm {
+    background: var(--bg-card);
+    padding: 3rem;
+    border-radius: var(--border-radius-lg);
+    box-shadow: var(--shadow-hard);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    max-width: 450px;
+    border: 1px solid var(--border-color-light);
+}
+
+.logo {
+    width: 150px;
+    height: auto;
+    margin-bottom: 2rem;
+    border-radius: var(--border-radius-md);
+}
+
+h2 {
+    margin-bottom: 2rem;
+    color: var(--text-primary);
+    font-weight: 700;
+    font-size: 2rem;
+}
+
+/* Remove redundant form styles, as global styles will be used */
+.formGroup,
+label,
+input[type="text"],
+input[type="password"],
+.submitButton {
+    /* These will be handled by global .form-group, .form-control, and .btn classes */
+    all: unset; /* Resetting styles to defer to global ones */
+}
+
+.error {
+    /* This class is now an addition to the global error-message */
+    width: 100%;
+    text-align: center;
+    margin-bottom: 1.5rem;
+}

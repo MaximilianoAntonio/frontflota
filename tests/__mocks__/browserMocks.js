@@ -3,6 +3,40 @@
  * An example how to mock localStorage is given below 👇
  */
 
+// Polyfills para APIs que faltan en JSDOM
+import { TextEncoder, TextDecoder } from 'util';
+
+// Configurar TextEncoder y TextDecoder globalmente
+global.TextEncoder = TextEncoder;
+global.TextDecoder = TextDecoder;
+
+// Mock para fetch si no está disponible
+if (!global.fetch) {
+  global.fetch = jest.fn(() =>
+    Promise.resolve({
+      json: () => Promise.resolve({}),
+    })
+  );
+}
+
+// Mock para Canvas
+HTMLCanvasElement.prototype.getContext = jest.fn();
+HTMLCanvasElement.prototype.toDataURL = jest.fn();
+
+// Mock para ResizeObserver
+global.ResizeObserver = jest.fn().mockImplementation(() => ({
+  observe: jest.fn(),
+  unobserve: jest.fn(),
+  disconnect: jest.fn(),
+}));
+
+// Mock para IntersectionObserver
+global.IntersectionObserver = jest.fn().mockImplementation(() => ({
+  observe: jest.fn(),
+  unobserve: jest.fn(),
+  disconnect: jest.fn(),
+}));
+
 /*
 // Mocks localStorage
 const localStorageMock = (function() {

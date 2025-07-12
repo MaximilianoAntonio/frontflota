@@ -6,16 +6,16 @@ module.exports = {
   entry: './src/index.js',
   output: {
     path: path.resolve(__dirname, 'build'),
-    filename: '[name].[contenthash].js',
+    filename: 'bundle.[contenthash].js',
     clean: true,
     publicPath: '/'
   },
   resolve: {
-    extensions: ['.js', '.jsx', '.ts', '.tsx'],
     alias: {
       'react': 'preact/compat',
       'react-dom': 'preact/compat'
-    }
+    },
+    extensions: ['.js', '.jsx', '.ts', '.tsx']
   },
   module: {
     rules: [
@@ -50,14 +50,38 @@ module.exports = {
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: './src/template.html',
+      template: './webpack-template.html',
       filename: 'index.html',
-      inject: true
+      inject: true,
+      minify: {
+        removeComments: true,
+        collapseWhitespace: true,
+        removeRedundantAttributes: true,
+        useShortDoctype: true,
+        removeEmptyAttributes: true,
+        removeStyleLinkTypeAttributes: true,
+        keepClosingSlash: true,
+        minifyJS: true,
+        minifyCSS: true,
+        minifyURLs: true
+      }
     }),
     new HtmlWebpackPlugin({
-      template: './src/template.html',
+      template: './webpack-template.html',
       filename: '200.html',
-      inject: true
+      inject: true,
+      minify: {
+        removeComments: true,
+        collapseWhitespace: true,
+        removeRedundantAttributes: true,
+        useShortDoctype: true,
+        removeEmptyAttributes: true,
+        removeStyleLinkTypeAttributes: true,
+        keepClosingSlash: true,
+        minifyJS: true,
+        minifyCSS: true,
+        minifyURLs: true
+      }
     })
   ],
   optimization: {

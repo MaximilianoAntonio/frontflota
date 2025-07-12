@@ -42,13 +42,13 @@ export default App;
   }
   
   // Intentar múltiples estrategias de build
-  console.log('Attempting build with preact cli...');
+  console.log('Attempting build with webpack directly...');
   
   let buildSuccess = false;
   
-  // Estrategia 1: preact build con configuraciones específicas
+  // Estrategia 1: webpack directo (evita problemas de preact-cli completamente)
   try {
-    execSync('npx preact build --no-prerender --no-sw', { 
+    execSync('npx webpack --config webpack.config.js', { 
       stdio: 'inherit',
       env: {
         ...process.env,
@@ -59,14 +59,14 @@ export default App;
       cwd: process.cwd()
     });
     buildSuccess = true;
-    console.log('Build successful with strategy 1 (--no-sw)');
+    console.log('Build successful with strategy 1 (webpack direct)');
   } catch (error1) {
-    console.log('Preact build with --no-sw failed, trying without service worker...');
+    console.log('Direct webpack build failed, trying preact build with --no-sw...');
     
-    // Estrategia 2: preact build básico
+    // Estrategia 2: preact build con configuraciones específicas (solo si webpack falla)
     try {
-      execSync('npx preact build --no-prerender', { 
-        stdio: 'inherit',
+      const result = execSync('npx preact build --no-prerender --no-sw', { 
+        stdio: 'pipe',
         env: {
           ...process.env,
           NODE_OPTIONS: nodeOptions,
@@ -75,15 +75,22 @@ export default App;
         },
         cwd: process.cwd()
       });
-      buildSuccess = true;
-      console.log('Build successful with strategy 2 (standard)');
-    } catch (error2) {
-      console.log('Standard preact build failed, trying fallback webpack build...');
       
-      // Estrategia 3: Usar build-fallback
+      // Verificar que no hay errores críticos en la salida
+      const output = result.toString();
+      if (output.includes('TypeError') || output.includes('ERROR')) {
+        throw new Error('Build completed but with errors');
+      }
+      
+      buildSuccess = true;
+      console.log('Build successful with strategy 2 (preact --no-sw)');
+    } catch (error2) {
+      console.log('Preact build with --no-sw failed, trying standard preact build...');
+      
+      // Estrategia 3: preact build básico
       try {
-        execSync('npm run build-fallback', { 
-          stdio: 'inherit',
+        const result = execSync('npx preact build --no-prerender', { 
+          stdio: 'pipe',
           env: {
             ...process.env,
             NODE_OPTIONS: nodeOptions,
@@ -92,14 +99,40 @@ export default App;
           },
           cwd: process.cwd()
         });
+        
+        // Verificar que no hay errores críticos en la salida
+        const output = result.toString();
+        if (output.includes('TypeError') || output.includes('ERROR')) {
+          throw new Error('Build completed but with errors');
+        }
+        
         buildSuccess = true;
-        console.log('Build successful with strategy 3 (fallback)');
+        console.log('Build successful with strategy 3 (preact standard)');
       } catch (error3) {
-        console.error('All build strategies failed');
-        console.error('Error 1 (preact --no-sw):', error1.message);
-        console.error('Error 2 (preact standard):', error2.message);
-        console.error('Error 3 (fallback):', error3.message);
-        buildSuccess = false;
+        console.log('Standard preact build failed, trying fallback webpack build...');
+        
+        // Estrategia 4: Usar build-fallback
+        try {
+          execSync('npm run build-fallback', { 
+            stdio: 'inherit',
+            env: {
+              ...process.env,
+              NODE_OPTIONS: nodeOptions,
+              NODE_ENV: 'production',
+              GENERATE_SOURCEMAP: 'false'
+            },
+            cwd: process.cwd()
+          });
+          buildSuccess = true;
+          console.log('Build successful with strategy 4 (fallback)');
+        } catch (error4) {
+          console.error('All build strategies failed');
+          console.error('Error 1 (webpack direct):', error1.message);
+          console.error('Error 2 (preact --no-sw):', error2.message);
+          console.error('Error 3 (preact standard):', error3.message);
+          console.error('Error 4 (fallback):', error4.message);
+          buildSuccess = false;
+        }
       }
     }
   }

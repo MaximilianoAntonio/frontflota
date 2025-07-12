@@ -17,7 +17,11 @@
     ]
   },
   "devDependencies": {
+    "@babel/plugin-transform-nullish-coalescing-operator": "^7.27.1",
+    "@babel/plugin-transform-optional-chaining": "^7.27.1",
     "@babel/preset-env": "^7.28.0",
+    "@babel/preset-react": "^7.27.1",
+    "core-js": "^3.44.0",
     "cross-env": "^7.0.3",
     "enzyme": "^3.11.0",
     "enzyme-adapter-preact-pure": "^4.0.0",

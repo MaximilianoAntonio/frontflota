@@ -1,21 +1,64 @@
 {
-	"name": "Sistema de Gestión Vehicular",
+	"name": "Sistema de Gestión Vehicular SSVQ",
 	"short_name": "SGV SSVQ",
+	"description": "Sistema integral de gestión vehicular para el Sindicato de la Salud de Valparaíso y Quillota",
 	"start_url": "/",
+	"scope": "/",
 	"display": "standalone",
-	"orientation": "portrait",
-	"background_color": "#fff",
-	"theme_color": "#673ab8",
+	"orientation": "portrait-primary",
+	"background_color": "#ffffff",
+	"theme_color": "#667eea",
+	"lang": "es",
+	"dir": "ltr",
+	"categories": ["business", "productivity", "utilities"],
 	"icons": [
 		{
-			"src": "assets/LOGOSSVQ.png",
+			"src": "/assets/icons/android-chrome-192x192.png",
 			"type": "image/png",
-			"sizes": "192x192"
+			"sizes": "192x192",
+			"purpose": "maskable any"
 		},
 		{
-			"src": "assets/LOGOSSVQ.png",
+			"src": "/assets/icons/android-chrome-512x512.png",
 			"type": "image/png",
-			"sizes": "512x512"
+			"sizes": "512x512",
+			"purpose": "maskable any"
+		},
+		{
+			"src": "/assets/icons/apple-touch-icon.png",
+			"type": "image/png",
+			"sizes": "180x180"
+		},
+		{
+			"src": "/assets/LOGOSSVQ.png",
+			"type": "image/png",
+			"sizes": "256x256"
+		}
+	],
+	"shortcuts": [
+		{
+			"name": "Dashboard",
+			"short_name": "Dashboard",
+			"description": "Acceso directo al dashboard",
+			"url": "/dashboard",
+			"icons": [
+				{
+					"src": "/assets/icons/android-chrome-192x192.png",
+					"sizes": "192x192"
+				}
+			]
+		},
+		{
+			"name": "Vehículos",
+			"short_name": "Vehículos",
+			"description": "Gestión de vehículos",
+			"url": "/vehiculos",
+			"icons": [
+				{
+					"src": "/assets/icons/android-chrome-192x192.png",
+					"sizes": "192x192"
+				}
+			]
 		}
 	]
 }

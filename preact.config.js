@@ -8,22 +8,6 @@ export default (config) => {
     plugin.constructor.name !== 'Critters'
   );
 
-  // Configuración específica para PWA y manifest.json
-  const CopyWebpackPlugin = require('copy-webpack-plugin');
-  
-  // Asegurar que el manifest.json se copie al directorio de build
-  config.plugins.push(
-    new CopyWebpackPlugin({
-      patterns: [
-        {
-          from: 'src/manifest.json',
-          to: 'manifest.json',
-          noErrorOnMissing: false
-        }
-      ]
-    })
-  );
-
   // Optimización de performance: Configurar límites de tamaño de archivos
   config.performance = {
     maxAssetSize: 500000, // 500 KiB

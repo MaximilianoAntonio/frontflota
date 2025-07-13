@@ -4,13 +4,12 @@
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
-    "build": "cross-env NODE_OPTIONS=--openssl-legacy-provider preact build --no-prerender && npm run copy-pwa-files",
-    "copy-pwa-files": "node -e \"const fs = require('fs'); const path = require('path'); if (!fs.existsSync('build')) fs.mkdirSync('build'); fs.copyFileSync('src/manifest.json', 'build/manifest.json'); fs.copyFileSync('src/sw.js', 'build/sw.js');\"",
+    "build": "cross-env NODE_OPTIONS=--openssl-legacy-provider preact build --no-prerender",
     "serve": "sirv build --port 5000 --cors --single --host",
     "dev": "cross-env NODE_OPTIONS=--openssl-legacy-provider preact watch --host 0.0.0.0 --port 8080",
     "lint": "eslint src",
     "test": "jest",
-    "vercel-build": "cross-env NODE_OPTIONS=--openssl-legacy-provider preact build --no-prerender && npm run copy-pwa-files"
+    "vercel-build": "cross-env NODE_OPTIONS=--openssl-legacy-provider preact build --no-prerender"
   },
   "eslintConfig": {
     "extends": "preact",

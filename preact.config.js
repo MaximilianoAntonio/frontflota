@@ -1,4 +1,4 @@
-export default (config, env, helpers) => {
+export default (config) => {
   if (config.devServer) {
     config.devServer.host = '0.0.0.0';
   }
@@ -88,4 +88,14 @@ export default (config, env, helpers) => {
       },
     };
   }
+
+  // Agregar copia de manifest.json al build
+  const CopyWebpackPlugin = require('copy-webpack-plugin');
+  config.plugins.push(
+    new CopyWebpackPlugin({
+      patterns: [
+        { from: 'src/manifest.json', to: '' }
+      ]
+    })
+  );
 };

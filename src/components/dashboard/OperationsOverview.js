@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'preact/hooks';
 import { API_BASE_URL } from '../../config';
+import { authenticatedFetch, isAuthenticated } from '../../services/authService';
 import MetricCard from './MetricCard';
 import AlertPanel from './AlertPanel';
 import QuickChart from './QuickChart';
@@ -11,6 +12,13 @@ const OperationsOverview = ({ timeFilter, isLoading }) => {
     const [error, setError] = useState(null);
 
     useEffect(() => {
+        // Verificar autenticación antes de cargar datos
+        if (!isAuthenticated()) {
+            setError('Usuario no autenticado');
+            setLoading(false);
+            return;
+        }
+        
         fetchOperationsData();
         
         // Escuchar el evento de actualización del dashboard
@@ -33,10 +41,13 @@ const OperationsOverview = ({ timeFilter, isLoading }) => {
                 ...(timeFilter.endDate && { fecha_fin: timeFilter.endDate })
             });
 
-            const response = await fetch(`${API_BASE_URL}/dashboard/stats/?${params}`);
+            const response = await authenticatedFetch(`${API_BASE_URL}/dashboard/stats/?${params}`);
             
             if (!response.ok) {
-                throw new Error('Error al cargar datos de operaciones');
+                if (response.status === 401) {
+                    throw new Error('Sesión expirada. Por favor, inicia sesión nuevamente.');
+                }
+                throw new Error(`Error al cargar datos de operaciones: ${response.status}`);
             }
             
             const result = await response.json();

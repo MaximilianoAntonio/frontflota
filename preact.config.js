@@ -3,14 +3,10 @@ export default (config) => {
     config.devServer.host = '0.0.0.0';
   }
   
-  // Disable problematic plugins (Critters and the built-in manifest plugin)
-  config.plugins = config.plugins.filter(plugin => {
-    // Remove Critters and any Webpack manifest plugins to avoid hook errors
-    const name = plugin.constructor.name;
-    return name !== 'Critters'
-      && name !== 'ManifestPlugin'
-      && name !== 'WebpackManifestPlugin';
-  });
+  // Disable critters plugin that's causing CSS parsing issues
+  config.plugins = config.plugins.filter(plugin => 
+    plugin.constructor.name !== 'Critters'
+  );
 
   // Optimización de performance: Configurar límites de tamaño de archivos
   config.performance = {
@@ -92,14 +88,4 @@ export default (config) => {
       },
     };
   }
-
-  // Agregar copia de manifest.json al build
-  const CopyWebpackPlugin = require('copy-webpack-plugin');
-  config.plugins.push(
-    new CopyWebpackPlugin({
-      patterns: [
-        { from: 'src/manifest.json', to: '' }
-      ]
-    })
-  );
 };

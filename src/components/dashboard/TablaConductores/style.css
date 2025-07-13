@@ -1,0 +1,517 @@
+/* src/components/dashboard/TablaConductores/style.css */
+
+.tablaContainer {
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    margin-bottom: 20px;
+}
+
+.tablaHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 25px;
+    background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+    border-bottom: 1px solid #dee2e6;
+}
+
+.tablaHeader h3 {
+    margin: 0;
+    color: #2c5aa0;
+    font-size: 1.3rem;
+    font-weight: 600;
+}
+
+.paginationInfo {
+    color: #666;
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+.tablaWrapper {
+    overflow-x: auto;
+    max-height: 70vh;
+}
+
+.tabla {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.9rem;
+}
+
+.tabla thead {
+    background: #2c5aa0;
+    color: white;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+.tabla th {
+    padding: 15px 12px;
+    text-align: left;
+    font-weight: 600;
+    border-bottom: 2px solid #1a4480;
+    white-space: nowrap;
+}
+
+.tabla th.sortable {
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    transition: background-color 0.2s ease;
+    position: relative;
+}
+
+.tabla th.sortable:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.sortIcon {
+    margin-left: 8px;
+    font-size: 0.8rem;
+    opacity: 0.7;
+}
+
+.tabla td {
+    padding: 15px 12px;
+    border-bottom: 1px solid #e9ecef;
+    vertical-align: top;
+}
+
+.filaTabla {
+    transition: background-color 0.2s ease;
+}
+
+.filaTabla:hover {
+    background: #f8f9fa;
+}
+
+.filaTabla:nth-child(even) {
+    background: #fdfdfd;
+}
+
+.filaTabla:nth-child(even):hover {
+    background: #f5f5f5;
+}
+
+/* Estilos específicos de celdas */
+.conductorInfo {
+    min-width: 180px;
+}
+
+.conductorNombre {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.conductorNombre strong {
+    color: #2c5aa0;
+    font-size: 1rem;
+}
+
+.conductorRun {
+    font-size: 0.8rem;
+    color: #666;
+    font-weight: 500;
+}
+
+.licenciaInfo {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    min-width: 150px;
+}
+
+.numeroLicencia {
+    font-weight: 600;
+    color: #333;
+}
+
+.vencimientoLicencia {
+    font-size: 0.8rem;
+    color: #666;
+}
+
+.estadoBadge {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    padding: 4px 8px;
+    border-radius: 6px;
+    font-size: 0.8rem;
+    font-weight: 500;
+    text-transform: capitalize;
+    white-space: nowrap;
+}
+
+/* Estados de disponibilidad */
+.disponible {
+    background: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+}
+
+.ocupado {
+    background: #fff3cd;
+    color: #856404;
+    border: 1px solid #ffeaa7;
+}
+
+.en_ruta {
+    background: #cce5ff;
+    color: #004085;
+    border: 1px solid #b8daff;
+}
+
+.no_disponible {
+    background: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+}
+
+/* Estados de licencia */
+.licencia_vigente {
+    background: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+}
+
+.licencia_por_vencer {
+    background: #fff3cd;
+    color: #856404;
+    border: 1px solid #ffeaa7;
+}
+
+.licencia_vencida {
+    background: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+}
+
+.diasVencimiento {
+    font-size: 0.75rem;
+    color: #856404;
+    margin-top: 4px;
+    font-weight: 600;
+}
+
+/* Barra de eficiencia */
+.eficienciaContainer {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    min-width: 120px;
+}
+
+.eficienciaBar {
+    flex: 1;
+    height: 8px;
+    background: #e9ecef;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.eficienciaFill {
+    height: 100%;
+    border-radius: 4px;
+    transition: width 0.3s ease;
+    position: relative;
+}
+
+.eficienciaFill::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    animation: shine 2s infinite;
+}
+
+@keyframes shine {
+    0% {
+        transform: translateX(-100%);
+    }
+    100% {
+        transform: translateX(100%);
+    }
+}
+
+.eficienciaTexto {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: #333;
+    min-width: 35px;
+}
+
+/* Información de actividad */
+.actividadInfo {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    min-width: 140px;
+}
+
+.diasTrabajados {
+    color: #333;
+    font-size: 0.9rem;
+}
+
+.diasTrabajados strong {
+    color: #2c5aa0;
+}
+
+.asignacionesInfo {
+    font-size: 0.8rem;
+    color: #666;
+}
+
+/* Información de kilómetros */
+.kmInfo {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    min-width: 120px;
+}
+
+.kmInfo strong {
+    color: #2c5aa0;
+    font-size: 0.9rem;
+}
+
+.promedioInfo {
+    font-size: 0.8rem;
+    color: #666;
+}
+
+/* Acciones */
+.accionesContainer {
+    display: flex;
+    gap: 8px;
+    justify-content: center;
+}
+
+.botonAccion {
+    background: #2c5aa0;
+    color: white;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 0.8rem;
+    font-weight: 500;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.botonAccion:hover {
+    background: #1a4480;
+    transform: translateY(-1px);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.botonAccion:active {
+    transform: translateY(0);
+}
+
+/* Paginación */
+.paginacion {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    padding: 20px;
+    background: #f8f9fa;
+    border-top: 1px solid #dee2e6;
+}
+
+.botonPaginacion {
+    background: #2c5aa0;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: all 0.2s ease;
+}
+
+.botonPaginacion:hover:not(:disabled) {
+    background: #1a4480;
+    transform: translateY(-1px);
+}
+
+.botonPaginacion:disabled {
+    background: #ccc;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.numerosPagina {
+    display: flex;
+    gap: 5px;
+}
+
+.numeroPagina {
+    background: white;
+    color: #2c5aa0;
+    border: 1px solid #dee2e6;
+    padding: 8px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: all 0.2s ease;
+    min-width: 40px;
+}
+
+.numeroPagina:hover {
+    background: #e9ecef;
+    border-color: #2c5aa0;
+}
+
+.numeroPagina.activa {
+    background: #2c5aa0;
+    color: white;
+    border-color: #2c5aa0;
+}
+
+/* Estado vacío */
+.emptyState {
+    text-align: center;
+    padding: 60px 20px;
+    color: #666;
+}
+
+.emptyIcon {
+    font-size: 4rem;
+    margin-bottom: 20px;
+    opacity: 0.5;
+}
+
+.emptyState h3 {
+    margin: 0 0 10px 0;
+    color: #333;
+    font-size: 1.3rem;
+}
+
+.emptyState p {
+    margin: 0;
+    font-size: 1rem;
+}
+
+/* Responsive */
+@media (max-width: 1200px) {
+    .tabla {
+        font-size: 0.85rem;
+    }
+    
+    .tabla th,
+    .tabla td {
+        padding: 12px 8px;
+    }
+}
+
+@media (max-width: 768px) {
+    .tablaHeader {
+        flex-direction: column;
+        gap: 10px;
+        text-align: center;
+    }
+
+    .tablaWrapper {
+        max-height: 60vh;
+    }
+
+    .tabla {
+        font-size: 0.8rem;
+    }
+
+    .tabla th,
+    .tabla td {
+        padding: 10px 6px;
+    }
+
+    .conductorInfo,
+    .licenciaInfo,
+    .eficienciaContainer,
+    .actividadInfo,
+    .kmInfo {
+        min-width: auto;
+    }
+
+    .paginacion {
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+
+    .numerosPagina {
+        order: 3;
+        width: 100%;
+        justify-content: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .tablaContainer {
+        margin: 0 -10px 20px -10px;
+        border-radius: 0;
+    }
+
+    .tablaHeader {
+        padding: 15px;
+    }
+
+    .tabla th,
+    .tabla td {
+        padding: 8px 4px;
+    }
+
+    .conductorNombre strong {
+        font-size: 0.9rem;
+    }
+
+    .estadoBadge {
+        font-size: 0.7rem;
+        padding: 3px 6px;
+    }
+
+    .botonAccion {
+        padding: 4px 8px;
+        font-size: 0.7rem;
+    }
+}
+
+/* Accesibilidad */
+@media (prefers-reduced-motion: reduce) {
+    .filaTabla,
+    .botonAccion,
+    .botonPaginacion,
+    .numeroPagina,
+    .eficienciaFill,
+    .eficienciaFill::after {
+        animation: none;
+        transition: none;
+    }
+}
+
+/* Focus states */
+.tabla th.sortable:focus,
+.botonAccion:focus,
+.botonPaginacion:focus,
+.numeroPagina:focus {
+    outline: 2px solid #2c5aa0;
+    outline-offset: 2px;
+}
+
+/* Dark mode support disabled - forcing light theme */

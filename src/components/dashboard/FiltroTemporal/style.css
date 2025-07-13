@@ -1,0 +1,142 @@
+/* src/components/dashboard/FiltroTemporal/style.css */
+
+.filtroTemporal {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    background: #f8fafc;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    border: 1px solid #e2e8f0;
+    min-width: 300px;
+}
+
+.selectorPeriodo {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.label {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: #374151;
+}
+
+.select {
+    padding: 0.5rem 0.75rem;
+    border: 1px solid #d1d5db;
+    border-radius: 0.375rem;
+    background: white;
+    font-size: 0.875rem;
+    color: #374151;
+    cursor: pointer;
+    transition: border-color 0.2s ease;
+}
+
+.select:focus {
+    outline: none;
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+.rangoCustom {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    padding: 1rem;
+    background: white;
+    border-radius: 0.375rem;
+    border: 1px solid #e2e8f0;
+}
+
+.fechaGroup {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.labelFecha {
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: #6b7280;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.inputFecha {
+    padding: 0.5rem 0.75rem;
+    border: 1px solid #d1d5db;
+    border-radius: 0.375rem;
+    font-size: 0.875rem;
+    color: #374151;
+    transition: border-color 0.2s ease;
+}
+
+.inputFecha:focus {
+    outline: none;
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+.aplicarButton {
+    padding: 0.5rem 1rem;
+    background: #3b82f6;
+    color: white;
+    border: none;
+    border-radius: 0.375rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.2s ease;
+    align-self: flex-start;
+}
+
+.aplicarButton:hover {
+    background: #2563eb;
+}
+
+.rangoActivo {
+    background: #dbeafe;
+    border: 1px solid #93c5fd;
+    border-radius: 0.375rem;
+    padding: 0.5rem 0.75rem;
+    margin-top: 0.5rem;
+}
+
+.rangoTexto {
+    font-size: 0.875rem;
+    color: #1e40af;
+    font-weight: 500;
+}
+
+/* Responsive */
+@media (max-width: 640px) {
+    .filtroTemporal {
+        min-width: auto;
+        width: 100%;
+    }
+    
+    .rangoCustom {
+        gap: 0.5rem;
+        padding: 0.75rem;
+    }
+    
+    .fechaGroup {
+        gap: 0.125rem;
+    }
+    
+    .labelFecha {
+        font-size: 0.7rem;
+    }
+    
+    .inputFecha {
+        padding: 0.375rem 0.5rem;
+        font-size: 0.8rem;
+    }
+    
+    .aplicarButton {
+        width: 100%;
+        padding: 0.75rem;
+    }
+}

@@ -2,7 +2,6 @@
 import { h } from 'preact';
 import { useState, useEffect } from 'preact/hooks';
 import { getDashboardStats, refreshDashboardCache, calculateAdditionalMetrics } from '../../services/dashboardService';
-import { getAsignaciones } from '../../services/asignacionService';
 import VistaGeneral from '../../components/dashboard/VistaGeneral';
 import VistaVehiculos from '../../components/dashboard/VistaVehiculos';
 import VistaConductores from '../../components/dashboard/VistaConductores';
@@ -13,7 +12,6 @@ import style from './style.css';
 const Dashboard = () => {
     const [activeTab, setActiveTab] = useState('general');
     const [dashboardData, setDashboardData] = useState(null);
-    const [asignaciones, setAsignaciones] = useState([]);
     const [loading, setLoading] = useState(true);
     const [refreshing, setRefreshing] = useState(false);
     const [error, setError] = useState(null);
@@ -31,13 +29,6 @@ const Dashboard = () => {
             const data = await getDashboardStats(params);
             const additionalMetrics = calculateAdditionalMetrics(data);
             setDashboardData({ ...data, metricas: additionalMetrics });
-
-            // Obtener asignaciones directamente
-            const asignacionesData = await getAsignaciones({
-                fecha_hora_requerida_inicio__gte: params.fecha_inicio,
-                fecha_hora_requerida_inicio__lte: params.fecha_fin
-            });
-            setAsignaciones(asignacionesData);
         } catch (err) {
             console.error('Error cargando datos del dashboard:', err);
             setError('Error al cargar los datos del dashboard. Por favor, intente nuevamente.');
@@ -113,15 +104,7 @@ const Dashboard = () => {
             case 'conductores':
                 return <VistaConductores data={dashboardData} loading={loading} filtro={filtroTemporal} />;
             case 'mapa':
-                return (
-                    <VistaMapa 
-                        vehiculos={dashboardData?.vehiculos || []}
-                        conductores={dashboardData?.conductores || []}
-                        asignaciones={asignaciones}
-                        filtros={filtroTemporal}
-                        onFiltrosChange={setFiltroTemporal}
-                    />
-                );
+                return <VistaMapa data={dashboardData} loading={loading} filtro={filtroTemporal} />;
             default:
                 return <VistaGeneral data={dashboardData} loading={loading} />;
         }

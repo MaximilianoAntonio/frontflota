@@ -1,0 +1,226 @@
+/* src/components/dashboard/GraficosVehiculos/style.css */
+
+.graficosContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.noData {
+    background: white;
+    border-radius: 0.75rem;
+    padding: 2rem;
+    text-align: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    border: 1px solid #e2e8f0;
+    color: #64748b;
+}
+
+.graficosGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+}
+
+.graficoCard {
+    background: white;
+    border-radius: 0.75rem;
+    padding: 1.5rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    border: 1px solid #e2e8f0;
+    display: flex;
+    flex-direction: column;
+}
+
+.graficoCard h4 {
+    margin: 0 0 1rem 0;
+    font-size: 1rem;
+    font-weight: 600;
+    color: #1e293b;
+    text-align: center;
+}
+
+.graficoWrapper {
+    flex: 1;
+    height: 250px;
+    position: relative;
+    margin-bottom: 1rem;
+}
+
+.graficoStats {
+    display: flex;
+    justify-content: center;
+    padding-top: 1rem;
+    border-top: 1px solid #f1f5f9;
+}
+
+.statItem {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.statValue {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #1e293b;
+    line-height: 1;
+}
+
+.statLabel {
+    font-size: 0.875rem;
+    color: #64748b;
+    font-weight: 500;
+    margin-top: 0.25rem;
+}
+
+/* Métricas adicionales */
+.metricsRow {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+    background: white;
+    border-radius: 0.75rem;
+    padding: 1.5rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    border: 1px solid #e2e8f0;
+}
+
+.metricCard {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem;
+    background: #f8fafc;
+    border-radius: 0.5rem;
+    border: 1px solid #e2e8f0;
+    transition: all 0.2s ease;
+}
+
+.metricCard:hover {
+    background: #f1f5f9;
+    transform: translateY(-1px);
+}
+
+.metricIcon {
+    font-size: 2rem;
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: white;
+    border-radius: 0.5rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.metricContent {
+    flex: 1;
+    min-width: 0;
+}
+
+.metricValue {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #1e293b;
+    line-height: 1.2;
+    display: block;
+}
+
+.metricLabel {
+    font-size: 0.875rem;
+    color: #64748b;
+    font-weight: 500;
+    line-height: 1.3;
+    margin-top: 0.125rem;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+    .graficosGrid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .metricsRow {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .graficosContainer {
+        gap: 1rem;
+    }
+    
+    .graficosGrid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+    
+    .graficoCard {
+        padding: 1rem;
+    }
+    
+    .graficoWrapper {
+        height: 200px;
+    }
+    
+    .metricsRow {
+        grid-template-columns: 1fr;
+        gap: 0.75rem;
+        padding: 1rem;
+    }
+    
+    .metricCard {
+        padding: 0.75rem;
+        gap: 0.75rem;
+    }
+    
+    .metricIcon {
+        font-size: 1.5rem;
+        width: 40px;
+        height: 40px;
+    }
+    
+    .metricValue {
+        font-size: 1.125rem;
+    }
+    
+    .metricLabel {
+        font-size: 0.8rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .graficoCard {
+        padding: 0.75rem;
+    }
+    
+    .graficoCard h4 {
+        font-size: 0.9rem;
+        margin-bottom: 0.75rem;
+    }
+    
+    .graficoWrapper {
+        height: 180px;
+        margin-bottom: 0.75rem;
+    }
+    
+    .statValue {
+        font-size: 1.25rem;
+    }
+    
+    .statLabel {
+        font-size: 0.8rem;
+    }
+    
+    .metricCard {
+        flex-direction: column;
+        text-align: center;
+        gap: 0.5rem;
+    }
+    
+    .metricIcon {
+        margin: 0 auto;
+    }
+}

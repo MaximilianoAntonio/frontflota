@@ -1,0 +1,480 @@
+/* src/components/dashboard/FiltrosConductores/style.css */
+
+.filtrosContainer {
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+    overflow: hidden;
+}
+
+/* Filtros principales */
+.filtrosPrincipales {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr auto;
+    gap: 20px;
+    padding: 20px;
+    align-items: end;
+    background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+    border-bottom: 1px solid #dee2e6;
+}
+
+/* Campo de búsqueda */
+.campoBusqueda {
+    position: relative;
+}
+
+.inputContainer {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.searchIcon {
+    position: absolute;
+    left: 12px;
+    font-size: 1.2rem;
+    color: #666;
+    z-index: 2;
+}
+
+.inputBusqueda {
+    width: 100%;
+    padding: 12px 45px 12px 40px;
+    border: 2px solid #dee2e6;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: all 0.2s ease;
+    background: white;
+}
+
+.inputBusqueda:focus {
+    outline: none;
+    border-color: #2c5aa0;
+    box-shadow: 0 0 0 3px rgba(44, 90, 160, 0.1);
+}
+
+.inputBusqueda::placeholder {
+    color: #999;
+}
+
+.clearButton {
+    position: absolute;
+    right: 8px;
+    background: none;
+    border: none;
+    color: #666;
+    cursor: pointer;
+    padding: 8px;
+    border-radius: 50%;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+}
+
+.clearButton:hover {
+    background: #f8f9fa;
+    color: #dc3545;
+}
+
+/* Campos de filtro */
+.campoFiltro {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.etiquetaFiltro {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 4px;
+}
+
+.selectFiltro {
+    padding: 12px;
+    border: 2px solid #dee2e6;
+    border-radius: 8px;
+    font-size: 1rem;
+    background: white;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.selectFiltro:focus {
+    outline: none;
+    border-color: #2c5aa0;
+    box-shadow: 0 0 0 3px rgba(44, 90, 160, 0.1);
+}
+
+.selectFiltro option {
+    padding: 8px;
+}
+
+/* Botones de acción */
+.botonesAccion {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.botonToggle,
+.botonLimpiar {
+    padding: 10px 16px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    white-space: nowrap;
+}
+
+.botonToggle {
+    background: #6c757d;
+    color: white;
+}
+
+.botonToggle:hover {
+    background: #5a6268;
+    transform: translateY(-1px);
+}
+
+.botonLimpiar {
+    background: #dc3545;
+    color: white;
+}
+
+.botonLimpiar:hover {
+    background: #c82333;
+    transform: translateY(-1px);
+}
+
+/* Filtros avanzados */
+.filtrosAvanzados {
+    padding: 20px;
+    background: #fdfdfd;
+    border-top: 1px solid #e9ecef;
+    animation: slideDown 0.3s ease-out;
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        max-height: 0;
+        padding-top: 0;
+        padding-bottom: 0;
+    }
+    to {
+        opacity: 1;
+        max-height: 500px;
+        padding-top: 20px;
+        padding-bottom: 20px;
+    }
+}
+
+.seccionAvanzada {
+    margin-bottom: 20px;
+}
+
+.seccionAvanzada:last-child {
+    margin-bottom: 0;
+}
+
+.seccionAvanzada h4 {
+    margin: 0 0 15px 0;
+    color: #2c5aa0;
+    font-size: 1.1rem;
+    font-weight: 600;
+    border-bottom: 2px solid #e9ecef;
+    padding-bottom: 8px;
+}
+
+/* Estadísticas de licencias */
+.estadisticasLicencias {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 15px;
+}
+
+.estadLicencia {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 16px;
+    background: white;
+    border-radius: 8px;
+    border-left: 4px solid #dee2e6;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.estadIcono {
+    font-size: 1.2rem;
+}
+
+.estadTexto {
+    font-weight: 500;
+    color: #333;
+}
+
+/* Filtros rápidos */
+.filtrosRapidos {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.filtroRapido {
+    padding: 10px 16px;
+    border: 2px solid #dee2e6;
+    background: white;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: all 0.2s ease;
+    color: #333;
+}
+
+.filtroRapido:hover {
+    border-color: #2c5aa0;
+    background: #f8f9fa;
+    transform: translateY(-1px);
+}
+
+.filtroRapido.activo {
+    background: #2c5aa0;
+    color: white;
+    border-color: #2c5aa0;
+}
+
+/* Filtros activos */
+.filtrosActivos {
+    padding: 15px 20px;
+    background: linear-gradient(135deg, #e3f2fd, #f3e5f5);
+    border-top: 1px solid #e9ecef;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.tituloActivos {
+    font-weight: 600;
+    color: #333;
+    font-size: 0.9rem;
+}
+
+.listaFiltrosActivos {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.filtroActivo {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 12px;
+    background: #2c5aa0;
+    color: white;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 500;
+    animation: slideIn 0.3s ease-out;
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateX(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.quitarFiltro {
+    background: none;
+    border: none;
+    color: white;
+    cursor: pointer;
+    padding: 2px;
+    border-radius: 50%;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 18px;
+    height: 18px;
+    font-size: 0.7rem;
+}
+
+.quitarFiltro:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+/* Resumen de resultados */
+.resumenResultados {
+    padding: 15px 20px;
+    background: #f8f9fa;
+    border-top: 1px solid #e9ecef;
+}
+
+.conteoResultados {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    justify-content: center;
+}
+
+.numeroResultados {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #2c5aa0;
+}
+
+.textoResultados {
+    font-size: 1rem;
+    color: #666;
+    font-weight: 500;
+}
+
+/* Responsive */
+@media (max-width: 1200px) {
+    .filtrosPrincipales {
+        grid-template-columns: 2fr 1fr 1fr;
+        gap: 15px;
+    }
+
+    .botonesAccion {
+        grid-column: 1 / -1;
+        flex-direction: row;
+        justify-content: center;
+        margin-top: 10px;
+    }
+}
+
+@media (max-width: 768px) {
+    .filtrosPrincipales {
+        grid-template-columns: 1fr;
+        gap: 15px;
+        padding: 15px;
+    }
+
+    .botonesAccion {
+        flex-direction: row;
+        justify-content: space-between;
+    }
+
+    .estadisticasLicencias {
+        grid-template-columns: 1fr;
+        gap: 10px;
+    }
+
+    .filtrosRapidos {
+        flex-direction: column;
+    }
+
+    .filtroRapido {
+        text-align: center;
+    }
+
+    .filtrosActivos {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+
+    .listaFiltrosActivos {
+        width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    .filtrosContainer {
+        margin: 0 -10px 20px -10px;
+        border-radius: 0;
+    }
+
+    .filtrosPrincipales {
+        padding: 12px;
+    }
+
+    .inputBusqueda {
+        padding: 10px 35px 10px 35px;
+        font-size: 0.9rem;
+    }
+
+    .selectFiltro {
+        padding: 10px;
+        font-size: 0.9rem;
+    }
+
+    .botonToggle,
+    .botonLimpiar {
+        padding: 8px 12px;
+        font-size: 0.8rem;
+    }
+
+    .filtrosAvanzados {
+        padding: 15px 12px;
+    }
+
+    .estadLicencia {
+        padding: 10px 12px;
+    }
+
+    .filtroRapido {
+        padding: 8px 12px;
+        font-size: 0.8rem;
+    }
+
+    .conteoResultados {
+        flex-direction: column;
+        gap: 4px;
+    }
+
+    .numeroResultados {
+        font-size: 1.3rem;
+    }
+
+    .textoResultados {
+        font-size: 0.9rem;
+        text-align: center;
+    }
+}
+
+/* Accesibilidad */
+@media (prefers-reduced-motion: reduce) {
+    .filtrosAvanzados,
+    .filtroActivo,
+    .botonToggle,
+    .botonLimpiar,
+    .filtroRapido {
+        animation: none;
+        transition: none;
+    }
+}
+
+/* Focus states */
+.inputBusqueda:focus,
+.selectFiltro:focus,
+.botonToggle:focus,
+.botonLimpiar:focus,
+.filtroRapido:focus,
+.clearButton:focus,
+.quitarFiltro:focus {
+    outline: 2px solid #2c5aa0;
+    outline-offset: 2px;
+}
+
+/* Dark mode support disabled - forcing light theme */

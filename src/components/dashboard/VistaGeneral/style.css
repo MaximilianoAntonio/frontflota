@@ -1,0 +1,200 @@
+/* src/components/dashboard/VistaGeneral/style.css */
+
+.vistaGeneral {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.loadingContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 300px;
+    gap: 1rem;
+    color: #64748b;
+}
+
+.spinner {
+    width: 32px;
+    height: 32px;
+    border: 3px solid #e2e8f0;
+    border-top: 3px solid #3b82f6;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Grid de métricas principales */
+.metricsGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+}
+
+/* Grid de gráficos */
+.chartsGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 1.5rem;
+}
+
+.chartCard {
+    background: white;
+    border-radius: 0.75rem;
+    padding: 1.5rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    border: 1px solid #e2e8f0;
+}
+
+.chartCard h3 {
+    margin: 0 0 1.5rem 0;
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: #1e293b;
+    text-align: center;
+}
+
+.chartContainer {
+    height: 300px;
+    position: relative;
+}
+
+.wideChart {
+    grid-column: 1 / -1;
+}
+
+/* Sección de alertas */
+.alertasSection {
+    background: white;
+    border-radius: 0.75rem;
+    padding: 1.5rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    border: 1px solid #e2e8f0;
+}
+
+/* Resumen estadístico */
+.resumenSection {
+    background: white;
+    border-radius: 0.75rem;
+    padding: 1.5rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    border: 1px solid #e2e8f0;
+}
+
+.resumenSection h3 {
+    margin: 0 0 1.5rem 0;
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #1e293b;
+}
+
+.resumenGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+}
+
+.resumenItem {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.resumenLabel {
+    font-size: 0.875rem;
+    color: #64748b;
+    font-weight: 500;
+}
+
+.resumenValue {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #1e293b;
+}
+
+.progressBar {
+    width: 100%;
+    height: 8px;
+    background: #e2e8f0;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.progressFill {
+    height: 100%;
+    background: linear-gradient(90deg, #3b82f6, #1d4ed8);
+    border-radius: 4px;
+    transition: width 0.5s ease;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+    .chartsGrid {
+        grid-template-columns: 1fr;
+    }
+    
+    .wideChart {
+        grid-column: 1;
+    }
+}
+
+@media (max-width: 768px) {
+    .vistaGeneral {
+        gap: 1.5rem;
+    }
+    
+    .metricsGrid {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 1rem;
+    }
+    
+    .chartsGrid {
+        gap: 1rem;
+    }
+    
+    .chartCard {
+        padding: 1rem;
+    }
+    
+    .chartContainer {
+        height: 250px;
+    }
+    
+    .resumenGrid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+    
+    .resumenSection {
+        padding: 1rem;
+    }
+    
+    .alertasSection {
+        padding: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .metricsGrid {
+        grid-template-columns: 1fr;
+    }
+    
+    .chartContainer {
+        height: 200px;
+    }
+    
+    .chartCard h3 {
+        font-size: 1rem;
+        margin-bottom: 1rem;
+    }
+    
+    .resumenValue {
+        font-size: 1.25rem;
+    }
+}

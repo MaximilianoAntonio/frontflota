@@ -1,0 +1,507 @@
+/* src/components/dashboard/GraficosConductores/style.css */
+
+.graficosContainer {
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+    overflow: hidden;
+}
+
+/* Tabs de navegación */
+.tabsContainer {
+    display: flex;
+    background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+    border-bottom: 1px solid #dee2e6;
+    padding: 0;
+}
+
+.tab {
+    flex: 1;
+    padding: 15px 20px;
+    border: none;
+    background: none;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 500;
+    color: #666;
+    transition: all 0.3s ease;
+    border-bottom: 3px solid transparent;
+    position: relative;
+}
+
+.tab:hover {
+    background: rgba(44, 90, 160, 0.1);
+    color: #2c5aa0;
+}
+
+.tab.tabActiva {
+    color: #2c5aa0;
+    background: white;
+    border-bottom-color: #2c5aa0;
+    font-weight: 600;
+}
+
+/* Métricas generales */
+.metricsRow {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    padding: 25px;
+    background: linear-gradient(135deg, #f8f9fa, #ffffff);
+    border-bottom: 1px solid #e9ecef;
+}
+
+.metricCard {
+    text-align: center;
+    padding: 20px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.metricCard:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+}
+
+.metricValue {
+    display: block;
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: #2c5aa0;
+    margin-bottom: 8px;
+}
+
+.metricLabel {
+    font-size: 0.9rem;
+    color: #666;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* Grid de gráficos */
+.chartsGrid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 25px;
+    padding: 25px;
+}
+
+.chartCard {
+    background: white;
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.chartCard:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+}
+
+.chartCard h4 {
+    margin: 0 0 20px 0;
+    color: #2c5aa0;
+    font-size: 1.2rem;
+    font-weight: 600;
+    text-align: center;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #e9ecef;
+}
+
+.chartContainer {
+    position: relative;
+    height: 300px;
+    width: 100%;
+}
+
+/* Loading */
+.loadingContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 300px;
+    gap: 20px;
+}
+
+.spinner {
+    width: 40px;
+    height: 40px;
+    border: 4px solid #f3f3f3;
+    border-top: 4px solid #2c5aa0;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.loadingContainer p {
+    color: #666;
+    font-size: 1.1rem;
+    margin: 0;
+}
+
+/* Alertas de licencias */
+.licenseAlerts {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    height: 300px;
+    overflow-y: auto;
+}
+
+.alertItem {
+    display: flex;
+    align-items: flex-start;
+    gap: 15px;
+    padding: 15px;
+    background: #f8f9fa;
+    border-radius: 8px;
+    border-left: 4px solid #dee2e6;
+    transition: all 0.2s ease;
+}
+
+.alertItem:hover {
+    background: #e9ecef;
+    transform: translateX(5px);
+}
+
+.alertIcon {
+    font-size: 1.5rem;
+    flex-shrink: 0;
+}
+
+.alertContent {
+    flex: 1;
+}
+
+.alertTitle {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 5px;
+}
+
+.alertCount {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: #2c5aa0;
+    margin-bottom: 5px;
+}
+
+.alertDetail {
+    font-size: 0.85rem;
+    color: #666;
+}
+
+/* Lista de próximos vencimientos */
+.expiringList {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    height: 300px;
+    overflow-y: auto;
+}
+
+.expiringItem {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 15px;
+    background: #fff3cd;
+    border-radius: 8px;
+    border-left: 4px solid #ffc107;
+    transition: all 0.2s ease;
+}
+
+.expiringItem:hover {
+    background: #ffeaa7;
+    transform: translateX(5px);
+}
+
+.conductorName {
+    font-weight: 500;
+    color: #333;
+}
+
+.expiringDays {
+    font-weight: 700;
+    color: #856404;
+    background: #ffc107;
+    padding: 4px 8px;
+    border-radius: 12px;
+    font-size: 0.8rem;
+}
+
+.noExpiring {
+    text-align: center;
+    color: #666;
+    font-style: italic;
+    padding: 40px 20px;
+}
+
+/* Estadísticas de licencias */
+.licenseStats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 15px;
+    height: 300px;
+    align-content: start;
+}
+
+.licenseStatItem {
+    text-align: center;
+    padding: 20px;
+    background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+    border-radius: 10px;
+    border: 1px solid #dee2e6;
+    transition: transform 0.2s ease;
+}
+
+.licenseStatItem:hover {
+    transform: translateY(-2px);
+}
+
+.statNumber {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #2c5aa0;
+    margin-bottom: 8px;
+}
+
+.statLabel {
+    font-size: 0.85rem;
+    color: #666;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* Resumen de estadísticas */
+.summaryStats {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    height: 300px;
+    justify-content: space-around;
+}
+
+.summaryItem {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    background: #f8f9fa;
+    border-radius: 8px;
+    border-left: 4px solid #2c5aa0;
+}
+
+.summaryLabel {
+    font-weight: 500;
+    color: #333;
+}
+
+.summaryValue {
+    font-weight: 700;
+    color: #2c5aa0;
+    font-size: 1.1rem;
+}
+
+/* Responsive */
+@media (max-width: 1200px) {
+    .chartsGrid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .metricsRow {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 15px;
+        padding: 20px;
+    }
+}
+
+@media (max-width: 768px) {
+    .tabsContainer {
+        flex-direction: column;
+    }
+
+    .tab {
+        padding: 12px 15px;
+        font-size: 0.9rem;
+        border-bottom: none;
+        border-left: 3px solid transparent;
+    }
+
+    .tab.tabActiva {
+        border-left-color: #2c5aa0;
+        border-bottom-color: transparent;
+    }
+
+    .metricsRow {
+        grid-template-columns: 1fr;
+        gap: 10px;
+        padding: 15px;
+    }
+
+    .metricCard {
+        padding: 15px;
+    }
+
+    .metricValue {
+        font-size: 1.8rem;
+    }
+
+    .chartsGrid {
+        padding: 20px 15px;
+        gap: 15px;
+    }
+
+    .chartCard {
+        padding: 15px;
+    }
+
+    .chartContainer {
+        height: 250px;
+    }
+
+    .licenseStats {
+        grid-template-columns: 1fr;
+        gap: 10px;
+    }
+
+    .licenseStatItem {
+        padding: 15px;
+    }
+
+    .statNumber {
+        font-size: 1.5rem;
+    }
+
+    .alertItem {
+        padding: 12px;
+        gap: 10px;
+    }
+
+    .alertIcon {
+        font-size: 1.2rem;
+    }
+
+    .alertTitle {
+        font-size: 0.9rem;
+    }
+
+    .alertCount {
+        font-size: 1rem;
+    }
+
+    .expiringItem {
+        padding: 10px 12px;
+    }
+
+    .conductorName {
+        font-size: 0.9rem;
+    }
+
+    .summaryItem {
+        padding: 12px;
+    }
+
+    .summaryLabel,
+    .summaryValue {
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .graficosContainer {
+        margin: 0 -10px 20px -10px;
+        border-radius: 0;
+    }
+
+    .tab {
+        padding: 10px 12px;
+        font-size: 0.8rem;
+    }
+
+    .metricsRow {
+        padding: 12px;
+    }
+
+    .metricCard {
+        padding: 12px;
+    }
+
+    .metricValue {
+        font-size: 1.5rem;
+    }
+
+    .metricLabel {
+        font-size: 0.8rem;
+    }
+
+    .chartsGrid {
+        padding: 15px 12px;
+    }
+
+    .chartCard {
+        padding: 12px;
+    }
+
+    .chartCard h4 {
+        font-size: 1rem;
+        margin-bottom: 15px;
+    }
+
+    .chartContainer {
+        height: 200px;
+    }
+
+    .alertItem {
+        flex-direction: column;
+        text-align: center;
+        gap: 8px;
+    }
+
+    .expiringItem {
+        flex-direction: column;
+        text-align: center;
+        gap: 5px;
+    }
+
+    .summaryItem {
+        flex-direction: column;
+        text-align: center;
+        gap: 5px;
+    }
+}
+
+/* Accesibilidad */
+@media (prefers-reduced-motion: reduce) {
+    .metricCard,
+    .chartCard,
+    .alertItem,
+    .expiringItem,
+    .licenseStatItem,
+    .tab,
+    .spinner {
+        animation: none;
+        transition: none;
+    }
+}
+
+/* Focus states */
+.tab:focus {
+    outline: 2px solid #2c5aa0;
+    outline-offset: -2px;
+}
+
+/* Dark mode support disabled - forcing light theme */

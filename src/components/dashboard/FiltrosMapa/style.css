@@ -1,0 +1,309 @@
+/* FiltrosMapa - Estilos CSS */
+
+.filtrosContainer {
+    width: 100%;
+    max-width: 320px;
+    background: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    border: 1px solid #e1e5e9;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.headerFiltros {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 16px;
+    text-align: center;
+}
+
+.headerFiltros h3 {
+    margin: 0 0 12px 0;
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.resumenStats {
+    display: flex;
+    justify-content: space-around;
+    gap: 16px;
+}
+
+.statItem {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.statNumber {
+    font-size: 24px;
+    font-weight: 700;
+    line-height: 1;
+}
+
+.statLabel {
+    font-size: 12px;
+    opacity: 0.9;
+    margin-top: 4px;
+}
+
+.seccionFiltros {
+    border-bottom: 1px solid #e1e5e9;
+}
+
+.seccionFiltros:last-child {
+    border-bottom: none;
+}
+
+.seccionHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 16px;
+    background: #f8f9fa;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    border-bottom: 1px solid #e1e5e9;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.seccionHeader:hover {
+    background: #e9ecef;
+}
+
+.seccionHeader h4 {
+    margin: 0;
+    font-size: 14px;
+    font-weight: 600;
+    color: #495057;
+}
+
+.toggleIcon {
+    font-size: 12px;
+    color: #6c757d;
+    transition: transform 0.3s ease;
+}
+
+.seccionContent {
+    padding: 16px;
+    background: #ffffff;
+}
+
+.campoFiltro {
+    margin-bottom: 16px;
+}
+
+.campoFiltro:last-child {
+    margin-bottom: 0;
+}
+
+.labelFiltro {
+    display: block;
+    margin-bottom: 6px;
+    font-size: 13px;
+    font-weight: 500;
+    color: #495057;
+}
+
+.selectFiltro,
+.inputFiltro {
+    width: 100%;
+    padding: 8px 12px;
+    border: 1px solid #ced4da;
+    border-radius: 6px;
+    font-size: 14px;
+    background: #ffffff;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    box-sizing: border-box;
+}
+
+.selectFiltro:focus,
+.inputFiltro:focus {
+    outline: none;
+    border-color: #667eea;
+    box-shadow: 0 0 0 2px rgba(102, 126, 234, 0.25);
+}
+
+.filtrosRapidos {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 12px;
+}
+
+.filtroRapido {
+    padding: 6px 12px;
+    background: #e9ecef;
+    border: 1px solid #dee2e6;
+    border-radius: 20px;
+    font-size: 12px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+}
+
+.filtroRapido:hover {
+    background: #667eea;
+    color: white;
+    border-color: #667eea;
+    transform: translateY(-1px);
+}
+
+.checkboxGroup {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.checkboxLabel {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    padding: 8px;
+    border-radius: 6px;
+}
+
+.checkboxLabel:hover {
+    background: #f8f9fa;
+}
+
+.checkbox {
+    margin-right: 8px;
+    width: 16px;
+    height: 16px;
+    accent-color: #667eea;
+}
+
+.checkboxText {
+    font-size: 14px;
+    color: #495057;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.estadisticasDetalle {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.estatDetalle {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 0;
+    border-bottom: 1px solid #f1f3f4;
+}
+
+.estatDetalle:last-child {
+    border-bottom: none;
+}
+
+.estatLabel {
+    font-size: 13px;
+    color: #6c757d;
+}
+
+.estatValor {
+    font-size: 14px;
+    font-weight: 600;
+    color: #495057;
+}
+
+.accionesFiltros {
+    padding: 16px;
+    background: #f8f9fa;
+    border-top: 1px solid #e1e5e9;
+}
+
+.botonLimpiar {
+    width: 100%;
+    padding: 10px;
+    background: #dc3545;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.botonLimpiar:hover {
+    background: #c82333;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(220, 53, 69, 0.3);
+}
+
+.botonLimpiar:active {
+    transform: translateY(0);
+}
+
+/* Animaciones */
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        max-height: 0;
+        padding-top: 0;
+        padding-bottom: 0;
+    }
+    to {
+        opacity: 1;
+        max-height: 500px;
+        padding-top: 16px;
+        padding-bottom: 16px;
+    }
+}
+
+.seccionContent {
+    animation: slideDown 0.3s ease-out;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .filtrosContainer {
+        max-width: 100%;
+        margin: 0;
+        border-radius: 0;
+    }
+    
+    .headerFiltros {
+        padding: 12px;
+    }
+    
+    .resumenStats {
+        gap: 12px;
+    }
+    
+    .statNumber {
+        font-size: 20px;
+    }
+    
+    .seccionContent {
+        padding: 12px;
+    }
+}
+
+/* Estados hover mejorados */
+.selectFiltro:hover,
+.inputFiltro:hover {
+    border-color: #adb5bd;
+}
+
+.checkbox:hover {
+    transform: scale(1.1);
+    transition: transform 0.2s ease;
+}
+
+/* Estilos para opciones seleccionadas */
+.selectFiltro option:checked {
+    background-color: #667eea;
+    color: white;
+}

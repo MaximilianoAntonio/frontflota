@@ -3,7 +3,7 @@ import { createAsignacion, updateAsignacion, normalizeEstado } from '../../servi
 
 // Lazy loading de Leaflet
 const loadLeaflet = async () => {
-  const [leafletCSS, L] = await Promise.all([
+  const [, L] = await Promise.all([
     import('leaflet/dist/leaflet.css'),
     import('leaflet')
   ]);
@@ -178,7 +178,7 @@ class AsignacionForm extends Component {
     
     try {
       const response = await fetch(
-        `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(query + ', Valparaíso, Chile')}&limit=5`
+        `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(`${query  }, Valparaíso, Chile`)}&limit=5`
       );
       const data = await response.json();
       this.setState({ [`${tipo}_calle_sugerencias`]: data });

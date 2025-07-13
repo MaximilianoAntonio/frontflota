@@ -4,7 +4,6 @@ import { motion } from 'framer-motion';
 import style from './style.css';
 import logoSSVQ from '../../assets/logo-ssvq.jpg';
 import logoUV from '../../assets/u-valparaiso.webp';
-import fachadaSSVQ from '../../assets/ssvqfachada.png';
 import { getVehiculos } from '../../services/vehicleService';
 import { getConductores } from '../../services/conductorService';
 import { getAsignaciones } from '../../services/asignacionService';
@@ -251,14 +250,13 @@ export default function Home() {
           <motion.div class={style.heroImage} variants={imageFloat}>
             <div class={style.heroFachadaContainer}>
               <motion.img 
-                src={fachadaSSVQ} 
-                alt="Fachada Servicio de Salud Viña del Mar - Quillota" 
+                src={logoSSVQ} 
+                alt="Logo Servicio de Salud Viña del Mar - Quillota" 
                 class={style.heroFachada}
-                whileHover={{ scale: 1.02 }}
+                whileHover={{ scale: 0.5 }}
                 transition={{ duration: 0.4 }}
               />
-              <div class={style.fachadaOverlay}>
-              </div>
+              <div class={style.fachadaOverlay} />
             </div>
           </motion.div>
         </div>

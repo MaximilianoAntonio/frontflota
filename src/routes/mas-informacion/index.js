@@ -7,7 +7,6 @@ import homeStyle from '../home/style.css';
 // Imágenes y assets
 import logoSSVQ from '../../assets/logo-ssvq.jpg';
 import logoUV from '../../assets/u-valparaiso.webp';
-import fachadaSSVQ from '../../assets/ssvqfachada.png';
 
 // Animaciones
 const pageVariants = {
@@ -69,7 +68,6 @@ const staggerContainer = {
 
 const MasInformacionPage = () => {
   const [activeSection, setActiveSection] = useState('overview');
-  const [expandedCard, setExpandedCard] = useState(null);
   const [searchTerm, setSearchTerm] = useState('');
   const [activeModule, setActiveModule] = useState(null);
   const [showTableOfContents, setShowTableOfContents] = useState(false);
@@ -773,7 +771,7 @@ const MasInformacionPage = () => {
         <div className={style.modulesGrid}>
           {filterContent(modulesInfo, searchTerm)
             .filter(module => activeModule === 'all' || module.id === activeModule)
-            .map((module, index) => (
+            .map((module) => (
             <motion.div 
               key={module.id}
               className={style.moduleCard}
@@ -927,7 +925,7 @@ const MasInformacionPage = () => {
                       <button className={style.tutorialActionBtn}>
                         🎮 Iniciar Tutorial
                       </button>
-                      <button className={style.tutorialActionBtn + ' ' + style.secondary}>
+                      <button className={`${style.tutorialActionBtn  } ${  style.secondary}`}>
                         📥 Descargar PDF
                       </button>
                     </div>

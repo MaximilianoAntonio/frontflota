@@ -1,0 +1,23 @@
+{
+  "version": 2,
+  "name": "frontflota",
+  "builds": [
+    {
+      "src": "package.json",
+      "use": "@vercel/static-build",
+      "config": {
+        "buildCommand": "cross-env NODE_OPTIONS=--openssl-legacy-provider preact build --no-prerender"
+      }
+    }
+  ],
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "/index.html"
+    }
+  ],
+  "outputDirectory": "build",
+  "cleanUrls": true,
+  "trailingSlash": false,
+  "functions": {}
+}

@@ -8,6 +8,16 @@ export default (config) => {
     plugin.constructor.name !== 'Critters'
   );
 
+  // Fix webpack-manifest-plugin compatibility issue
+  config.plugins = config.plugins.filter(plugin => 
+    plugin.constructor.name !== 'WebpackManifestPlugin'
+  );
+
+  // Fix workbox-webpack-plugin compatibility issue
+  config.plugins = config.plugins.filter(plugin => 
+    plugin.constructor.name !== 'InjectManifest'
+  );
+
   // Optimización de performance: Configurar límites de tamaño de archivos
   config.performance = {
     maxAssetSize: 500000, // 500 KiB

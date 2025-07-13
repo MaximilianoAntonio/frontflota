@@ -4,12 +4,12 @@
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
-    "build": "cross-env NODE_OPTIONS=--openssl-legacy-provider preact build --no-prerender",
+    "build": "preact build --no-prerender",
     "serve": "sirv build --port 5000 --cors --single --host",
-    "dev": "cross-env NODE_OPTIONS=--openssl-legacy-provider preact watch --host 0.0.0.0 --port 8080",
+    "dev": "preact watch --host 0.0.0.0 --port 8080",
     "lint": "eslint src",
     "test": "jest",
-    "vercel-build": "cross-env NODE_OPTIONS=--openssl-legacy-provider preact build --no-prerender"
+    "vercel-build": "preact build --no-prerender"
   },
   "eslintConfig": {
     "extends": "preact",

@@ -221,6 +221,14 @@ class AsignacionesPage extends Component {
 
   renderTable() {
     const { asignaciones, loading, error } = this.state;
+    const estadosLabels = {
+      pendiente_auto: 'Pendientes',
+      programada: 'Programadas',
+      activa: 'En Curso',
+      completada: 'Finalizadas',
+      cancelada: 'Canceladas',
+      fallo_auto: 'Fallo Auto'
+    };
 
     if (loading) return <p>Cargando asignaciones...</p>;
     if (error) return <p class="error-message">{error}</p>;
@@ -229,7 +237,7 @@ class AsignacionesPage extends Component {
       <div class="table-container">
         {/* Tip informativo */}
         <div class={style.tableTip}>
-          <i class="fas fa-info-circle" />
+          <i class="fas fa-info-circle"></i>
           <span>Haz clic en cualquier fila para ver los detalles de la asignación</span>
         </div>
         

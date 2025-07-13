@@ -12,6 +12,80 @@ const DISPONIBILIDAD_LABELS = {
   no_disponible: 'No Disponible'
 };
 
+class TurnoPairEditModal extends Component {
+    constructor(props) {
+        super(props);
+        const { turnoPair } = props;
+        const formatForInput = (iso) => iso ? new Date(new Date(iso).getTime() - new Date(iso).getTimezoneOffset() * 60000).toISOString().slice(0, 16) : '';
+        
+        this.state = {
+            start: turnoPair.start ? formatForInput(turnoPair.start.fecha_hora) : '',
+            end: turnoPair.end ? formatForInput(turnoPair.end.fecha_hora) : '',
+        };
+    }
+
+    handleSave = (e) => {
+        e.preventDefault();
+        const { start, end } = this.state;
+        const { turnoPair } = this.props;
+
+        if (start && end && new Date(start) >= new Date(end)) {
+            alert('La hora de inicio debe ser anterior a la hora de fin.');
+            return;
+        }
+
+        const saveData = {
+            start: turnoPair.start && start ? { id: turnoPair.start.id, data: { fecha_hora: new Date(start).toISOString() } } : null,
+            end: turnoPair.end && end ? { id: turnoPair.end.id, data: { fecha_hora: new Date(end).toISOString() } } : null,
+        };
+
+        this.props.onSave(saveData);
+    }
+
+    render() {
+        const { onCancel, turnoPair } = this.props;
+        const { start, end } = this.state;
+
+        return (
+            <div>
+                <h3 class="modal-title">Editar Turno</h3>
+                <form onSubmit={this.handleSave} class="form-container">
+                    <div class="form-group">
+                        {turnoPair.start && (
+                            <div class="input-group">
+                                <label for="start_time">Inicio</label>
+                                <input
+                                    type="datetime-local"
+                                    id="start_time"
+                                    class="form-control"
+                                    value={start}
+                                    onInput={e => this.setState({ start: e.target.value })}
+                                />
+                            </div>
+                        )}
+                        {turnoPair.end && (
+                            <div class="input-group">
+                                <label for="end_time">Fin</label>
+                                <input
+                                    type="datetime-local"
+                                    id="end_time"
+                                    class="form-control"
+                                    value={end}
+                                    onInput={e => this.setState({ end: e.target.value })}
+                                />
+                            </div>
+                        )}
+                    </div>
+                    <div class="modal-actions">
+                        <button type="button" class="btn btn-secondary" onClick={onCancel}>Cancelar</button>
+                        <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+                    </div>
+                </form>
+            </div>
+        );
+    }
+}
+
 class HorariosPage extends Component {
   state = {
     conductores: [],
@@ -534,7 +608,7 @@ class HorariosPage extends Component {
     );
   };
 
-  render(_, { conductores, loading, error }) {
+  render(_, { conductores, loading, error, editingTurnoPair }) {
     // Contar conductores por disponibilidad
     const conductoresPorDisponibilidad = conductores.reduce((acc, c) => {
       acc[c.estado_disponibilidad] = (acc[c.estado_disponibilidad] || 0) + 1;
@@ -581,7 +655,7 @@ class HorariosPage extends Component {
             <div class="table-container">
               {/* Tip informativo */}
               <div class={style.tableTip}>
-                <i class="fas fa-info-circle" />
+                <i class="fas fa-info-circle"></i>
                 <span>Haz clic en cualquier fila para ver los horarios del conductor</span>
               </div>
               

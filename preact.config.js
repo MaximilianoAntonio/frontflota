@@ -1,25 +1,7 @@
 export default (config, env, helpers) => {
-  const { CopyWebpackPlugin } = helpers;
-  
   if (config.devServer) {
     config.devServer.host = '0.0.0.0';
   }
-  
-  // PWA Configuration - Copiar archivos estáticos al build
-  config.plugins.push(
-    new CopyWebpackPlugin({
-      patterns: [
-        {
-          from: 'src/manifest.json',
-          to: 'manifest.json'
-        },
-        {
-          from: 'src/sw.js',
-          to: 'sw.js'
-        }
-      ]
-    })
-  );
   
   // Disable critters plugin that's causing CSS parsing issues
   config.plugins = config.plugins.filter(plugin => 

@@ -3,10 +3,14 @@ export default (config) => {
     config.devServer.host = '0.0.0.0';
   }
   
-  // Disable critters plugin that's causing CSS parsing issues
-  config.plugins = config.plugins.filter(plugin => 
-    plugin.constructor.name !== 'Critters'
-  );
+  // Disable problematic plugins (Critters and the built-in manifest plugin)
+  config.plugins = config.plugins.filter(plugin => {
+    // Remove Critters and any Webpack manifest plugins to avoid hook errors
+    const name = plugin.constructor.name;
+    return name !== 'Critters'
+      && name !== 'ManifestPlugin'
+      && name !== 'WebpackManifestPlugin';
+  });
 
   // Optimización de performance: Configurar límites de tamaño de archivos
   config.performance = {

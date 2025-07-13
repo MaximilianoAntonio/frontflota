@@ -1,0 +1,537 @@
+/* Driver Details Styles */
+.driver-details {
+    max-width: 100%;
+    overflow-x: hidden;
+}
+
+/* Resumen de Rendimiento */
+.performance-summary {
+    background: linear-gradient(135deg, #f7fafc 0%, #edf2f7 100%);
+    border-radius: 12px;
+    padding: 24px;
+    margin-bottom: 24px;
+    border: 1px solid #e2e8f0;
+}
+
+.performance-summary h3 {
+    margin: 0 0 20px 0;
+    color: #2d3748;
+    font-size: 1.3rem;
+    font-weight: 600;
+    text-align: center;
+}
+
+.summary-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 16px;
+    margin-bottom: 24px;
+}
+
+.summary-card {
+    background: white;
+    border-radius: 12px;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    border: 2px solid;
+    transition: all 0.3s ease;
+}
+
+.summary-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+}
+
+.summary-card.active {
+    border-color: #38a169;
+    background: linear-gradient(135deg, #e6fffa 0%, #ffffff 100%);
+}
+
+.summary-card.complete {
+    border-color: #3182ce;
+    background: linear-gradient(135deg, #e6f3ff 0%, #ffffff 100%);
+}
+
+.summary-card.regular {
+    border-color: #805ad5;
+    background: linear-gradient(135deg, #f7edff 0%, #ffffff 100%);
+}
+
+.summary-card.low {
+    border-color: #d69e2e;
+    background: linear-gradient(135deg, #fef5e7 0%, #ffffff 100%);
+}
+
+.summary-card.inactive {
+    border-color: #e53e3e;
+    background: linear-gradient(135deg, #fed7d7 0%, #ffffff 100%);
+}
+
+.summary-count {
+    display: block;
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #2d3748;
+    margin-bottom: 8px;
+}
+
+.summary-label {
+    font-size: 14px;
+    font-weight: 600;
+    color: #4a5568;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* Métricas de la Flota */
+.fleet-metrics {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    padding: 20px;
+    background: white;
+    border-radius: 8px;
+    border: 1px solid #e2e8f0;
+}
+
+.metric-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.metric-label {
+    font-size: 14px;
+    color: #4a5568;
+    font-weight: 500;
+}
+
+.metric-value {
+    font-size: 16px;
+    font-weight: 700;
+    color: #2d3748;
+}
+
+/* Sección de Filtros */
+.filters-section {
+    background: white;
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 24px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    border: 1px solid #e2e8f0;
+}
+
+.filters-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    gap: 16px;
+    align-items: center;
+}
+
+.search-input {
+    padding: 12px 16px;
+    border: 2px solid #e2e8f0;
+    border-radius: 8px;
+    font-size: 14px;
+    background: white;
+    transition: border-color 0.3s ease;
+}
+
+.search-input:focus {
+    outline: none;
+    border-color: #667eea;
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+}
+
+.filter-select {
+    padding: 12px 16px;
+    border: 2px solid #e2e8f0;
+    border-radius: 8px;
+    font-size: 14px;
+    background: white;
+    cursor: pointer;
+    transition: border-color 0.3s ease;
+}
+
+.filter-select:focus {
+    outline: none;
+    border-color: #667eea;
+}
+
+/* Grid de Conductores */
+.drivers-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+    gap: 24px;
+}
+
+.driver-card {
+    background: white;
+    border-radius: 16px;
+    padding: 24px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    border: 1px solid #e2e8f0;
+    transition: all 0.3s ease;
+    border-left: 4px solid;
+}
+
+.driver-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+}
+
+.driver-card.completo {
+    border-left-color: #38a169;
+}
+
+.driver-card.regular {
+    border-left-color: #3182ce;
+}
+
+.driver-card.bajo {
+    border-left-color: #d69e2e;
+}
+
+.driver-card.inactivo {
+    border-left-color: #e53e3e;
+}
+
+.driver-card.unknown {
+    border-left-color: #718096;
+}
+
+/* Header del Conductor */
+.driver-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.driver-info {
+    flex: 1;
+}
+
+.driver-name {
+    margin: 0 0 6px 0;
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #2d3748;
+}
+
+.driver-license {
+    font-size: 12px;
+    color: #718096;
+    background: #f7fafc;
+    padding: 2px 8px;
+    border-radius: 12px;
+    font-weight: 500;
+}
+
+.status-badge {
+    padding: 6px 12px;
+    border-radius: 16px;
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.status-badge.disponible {
+    background: #c6f6d5;
+    color: #22543d;
+}
+
+.status-badge.en_ruta {
+    background: #bee3f8;
+    color: #2c5282;
+}
+
+.status-badge.dia_libre {
+    background: #fef5e7;
+    color: #744210;
+}
+
+.status-badge.no_disponible {
+    background: #fed7d7;
+    color: #742a2a;
+}
+
+/* Análisis de Horarios */
+.schedule-analysis {
+    background: #f7fafc;
+    border-radius: 8px;
+    padding: 16px;
+    margin-bottom: 16px;
+}
+
+.schedule-analysis h5 {
+    margin: 0 0 12px 0;
+    font-size: 14px;
+    font-weight: 600;
+    color: #2d3748;
+}
+
+.schedule-metrics {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px 16px;
+    margin-bottom: 16px;
+}
+
+.schedule-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.schedule-label {
+    font-size: 12px;
+    color: #4a5568;
+    font-weight: 500;
+}
+
+.schedule-value {
+    font-size: 12px;
+    font-weight: 600;
+    color: #2d3748;
+}
+
+.schedule-status {
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* Progreso de Actividad */
+.activity-progress {
+    margin-top: 12px;
+}
+
+.progress-label {
+    font-size: 12px;
+    color: #4a5568;
+    font-weight: 600;
+    margin-bottom: 6px;
+}
+
+.progress-bar {
+    height: 8px;
+    background: #e2e8f0;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.progress-fill {
+    height: 100%;
+    border-radius: 4px;
+    transition: width 0.8s ease;
+}
+
+/* Sección de Rendimiento */
+.performance-section {
+    background: #edf2f7;
+    border-radius: 8px;
+    padding: 16px;
+    margin-bottom: 16px;
+}
+
+.performance-section h5 {
+    margin: 0 0 12px 0;
+    font-size: 14px;
+    font-weight: 600;
+    color: #2d3748;
+}
+
+.performance-metrics {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px 16px;
+    margin-bottom: 16px;
+}
+
+.performance-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.performance-label {
+    font-size: 12px;
+    color: #4a5568;
+    font-weight: 500;
+}
+
+.performance-value {
+    font-size: 12px;
+    font-weight: 600;
+    color: #2d3748;
+}
+
+/* Eficiencia General */
+.efficiency-section {
+    margin-top: 12px;
+}
+
+.efficiency-label {
+    font-size: 12px;
+    color: #4a5568;
+    font-weight: 600;
+    margin-bottom: 6px;
+}
+
+.efficiency-bar {
+    height: 12px;
+    background: #e2e8f0;
+    border-radius: 6px;
+    overflow: hidden;
+}
+
+.efficiency-fill {
+    height: 100%;
+    border-radius: 6px;
+    transition: width 0.8s ease;
+}
+
+/* Sección de Calendario */
+.calendar-section {
+    background: #f0fff4;
+    border-radius: 8px;
+    padding: 16px;
+}
+
+.calendar-section h5 {
+    margin: 0 0 12px 0;
+    font-size: 14px;
+    font-weight: 600;
+    color: #2d3748;
+}
+
+.calendar-grid {
+    display: grid;
+    grid-template-columns: repeat(15, 1fr);
+    gap: 2px;
+    margin-bottom: 12px;
+}
+
+.calendar-day {
+    width: 12px;
+    height: 12px;
+    border-radius: 2px;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+
+.calendar-day:hover {
+    transform: scale(1.2);
+}
+
+.calendar-day.worked {
+    background: #38a169;
+}
+
+.calendar-day.off {
+    background: #e2e8f0;
+}
+
+.calendar-legend {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 11px;
+    color: #4a5568;
+    font-weight: 500;
+}
+
+.legend-color {
+    width: 12px;
+    height: 12px;
+    border-radius: 2px;
+}
+
+.legend-color.worked {
+    background: #38a169;
+}
+
+.legend-color.off {
+    background: #e2e8f0;
+}
+
+/* Sin Resultados */
+.no-results {
+    text-align: center;
+    padding: 40px;
+    color: #718096;
+    font-size: 1.1rem;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .summary-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+    }
+    
+    .fleet-metrics {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+    
+    .filters-grid {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+    
+    .drivers-grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+    
+    .driver-card {
+        padding: 20px;
+    }
+    
+    .schedule-metrics,
+    .performance-metrics {
+        grid-template-columns: 1fr;
+        gap: 8px;
+    }
+    
+    .calendar-grid {
+        grid-template-columns: repeat(10, 1fr);
+    }
+}
+
+@media (max-width: 480px) {
+    .summary-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .driver-card {
+        padding: 16px;
+    }
+    
+    .driver-header {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 12px;
+    }
+    
+    .calendar-grid {
+        grid-template-columns: repeat(7, 1fr);
+    }
+    
+    .calendar-legend {
+        flex-direction: column;
+        gap: 8px;
+    }
+}

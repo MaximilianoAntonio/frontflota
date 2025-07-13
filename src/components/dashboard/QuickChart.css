@@ -1,0 +1,122 @@
+/* Quick Chart Styles */
+.quick-chart-container {
+    position: relative;
+    width: 100%;
+    padding: 16px 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.quick-chart-container canvas {
+    max-width: 100%;
+    max-height: 100%;
+}
+
+/* Sin Datos */
+.no-chart-data {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    text-align: center;
+    color: #718096;
+}
+
+.no-data-icon {
+    font-size: 3rem;
+    margin-bottom: 16px;
+    opacity: 0.5;
+}
+
+.no-chart-data p {
+    margin: 0 0 8px 0;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #4a5568;
+}
+
+.no-chart-data small {
+    font-size: 0.9rem;
+    color: #718096;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .quick-chart-container {
+        padding: 12px 4px;
+    }
+    
+    .no-data-icon {
+        font-size: 2.5rem;
+        margin-bottom: 12px;
+    }
+    
+    .no-chart-data p {
+        font-size: 1rem;
+    }
+    
+    .no-chart-data small {
+        font-size: 0.8rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .quick-chart-container {
+        padding: 8px 2px;
+    }
+    
+    .no-data-icon {
+        font-size: 2rem;
+        margin-bottom: 8px;
+    }
+    
+    .no-chart-data p {
+        font-size: 0.9rem;
+    }
+    
+    .no-chart-data small {
+        font-size: 0.75rem;
+    }
+}
+
+/* Animaciones de Carga */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.quick-chart-container {
+    animation: fadeIn 0.5s ease-out;
+}
+
+/* Mejoras para mejor legibilidad */
+.quick-chart-container canvas {
+    border-radius: 8px;
+}
+
+/* Estilos para tooltips personalizados (si se necesitan) */
+.chartjs-tooltip {
+    background: rgba(0, 0, 0, 0.8) !important;
+    border-radius: 8px !important;
+    color: white !important;
+    font-family: inherit !important;
+    font-size: 12px !important;
+    padding: 8px 12px !important;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2) !important;
+}
+
+.chartjs-tooltip-key {
+    display: inline-block !important;
+    width: 12px !important;
+    height: 12px !important;
+    margin-right: 8px !important;
+    border-radius: 2px !important;
+}

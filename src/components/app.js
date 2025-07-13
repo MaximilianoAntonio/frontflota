@@ -15,6 +15,7 @@ const ConductoresPage = lazy(() => import('../routes/conductores'));
 const MantenimientoPage = lazy(() => import('../routes/mantenimiento'));
 const CamaraPage = lazy(() => import('../routes/camara/index'));
 const MasInformacionPage = lazy(() => import('../routes/mas-informacion'));
+const DashboardPage = lazy(() => import('../routes/dashboard'));
 
 // Componente de loading
 const Loading = () => (
@@ -90,6 +91,7 @@ export default class App extends Component {
                     <Router onChange={this.handleRoute}>
                         <Home path="/" />
                         <LoginPage path="/login" onLoginSuccess={this.handleLogin} />
+                        <PrivateRoute component={DashboardPage} path="/dashboard" />
                         <PrivateRoute component={VehiculosPage} path="/vehiculos" />
                         <PrivateRoute component={ConductoresPage} path="/conductores" />
                         <PrivateRoute component={AsignacionesPage} path="/asignaciones" userGroup={this.state.userGroup} />

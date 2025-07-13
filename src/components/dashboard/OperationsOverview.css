@@ -1,0 +1,211 @@
+/* Operations Overview Styles */
+.operations-overview {
+    max-width: 100%;
+    overflow-x: hidden;
+}
+
+/* Estados de Carga */
+.loading-state, .error-state, .no-data-state {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 400px;
+    text-align: center;
+    padding: 40px;
+}
+
+.error-state h3 {
+    color: #e53e3e;
+    margin-bottom: 16px;
+}
+
+.retry-btn {
+    background: #667eea;
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    margin-top: 16px;
+    transition: all 0.3s ease;
+}
+
+.retry-btn:hover {
+    background: #5a67d8;
+    transform: translateY(-2px);
+}
+
+/* Grid de Métricas */
+.metrics-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 24px;
+    margin-bottom: 32px;
+}
+
+/* Sección de Gráficos */
+.charts-section {
+    margin: 32px 0;
+}
+
+.chart-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    margin-bottom: 24px;
+}
+
+.chart-row .full-width {
+    grid-column: 1 / -1;
+}
+
+.chart-container {
+    background: white;
+    border-radius: 12px;
+    padding: 24px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    border: 1px solid #e2e8f0;
+}
+
+.chart-container h3 {
+    margin: 0 0 20px 0;
+    color: #2d3748;
+    font-size: 1.2rem;
+    font-weight: 600;
+    text-align: center;
+}
+
+/* Resumen de Eficiencia */
+.efficiency-summary {
+    background: linear-gradient(135deg, #f7fafc 0%, #edf2f7 100%);
+    border-radius: 12px;
+    padding: 24px;
+    margin: 32px 0;
+    border: 1px solid #e2e8f0;
+}
+
+.efficiency-summary h3 {
+    margin: 0 0 20px 0;
+    color: #2d3748;
+    font-size: 1.3rem;
+    font-weight: 600;
+    text-align: center;
+}
+
+.efficiency-metrics {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.efficiency-item {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.efficiency-label {
+    min-width: 180px;
+    font-weight: 600;
+    color: #4a5568;
+}
+
+.efficiency-bar {
+    flex: 1;
+    height: 24px;
+    background: #e2e8f0;
+    border-radius: 12px;
+    position: relative;
+    overflow: hidden;
+}
+
+.efficiency-fill {
+    height: 100%;
+    border-radius: 12px;
+    transition: width 0.8s ease;
+    position: relative;
+}
+
+.efficiency-value {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-weight: 600;
+    font-size: 12px;
+    color: white;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+/* Información de Actualización */
+.update-info {
+    margin-top: 32px;
+    padding: 16px;
+    background: #f7fafc;
+    border-radius: 8px;
+    border-left: 4px solid #667eea;
+    color: #4a5568;
+    font-size: 12px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .metrics-grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+    
+    .chart-row {
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+    
+    .chart-container {
+        padding: 16px;
+    }
+    
+    .efficiency-item {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 8px;
+    }
+    
+    .efficiency-label {
+        min-width: auto;
+        text-align: center;
+    }
+    
+    .efficiency-value {
+        right: 8px;
+        font-size: 11px;
+    }
+}
+
+@media (max-width: 480px) {
+    .operations-overview {
+        padding: 0;
+    }
+    
+    .metrics-grid {
+        gap: 12px;
+    }
+    
+    .efficiency-summary {
+        padding: 16px;
+    }
+    
+    .efficiency-metrics {
+        gap: 12px;
+    }
+    
+    .efficiency-bar {
+        height: 20px;
+    }
+    
+    .efficiency-value {
+        font-size: 10px;
+        right: 6px;
+    }
+}

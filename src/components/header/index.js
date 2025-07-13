@@ -29,6 +29,9 @@ const Header = ({ isLoggedIn, onLogout, userGroup }) => {
                             </Link>
                         ) : (
                             <>
+                                <Link activeClassName={style.active} href="/dashboard">
+                                    Dashboard
+                                </Link>
                                 <Link activeClassName={style.active} href="/vehiculos">
                                     Vehículos
                                 </Link>

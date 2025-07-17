@@ -585,6 +585,10 @@
         break-inside: avoid;
     }
 
+    .viewTabs {
+        display: none;
+    }
+
     .vehiculosGrid {
         grid-template-columns: repeat(2, 1fr);
     }

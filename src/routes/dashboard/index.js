@@ -5,6 +5,7 @@ import { getDashboardStats, refreshDashboardCache, calculateAdditionalMetrics } 
 import VistaGeneral from '../../components/dashboard/VistaGeneral';
 import VistaVehiculos from '../../components/dashboard/VistaVehiculos';
 import VistaConductores from '../../components/dashboard/VistaConductores';
+import VistaAsignaciones from '../../components/dashboard/VistaAsignaciones';
 import VistaMapa from '../../components/dashboard/VistaMapa';
 import FiltroTemporal from '../../components/dashboard/FiltroTemporal';
 import style from './style.css';
@@ -64,6 +65,7 @@ const Dashboard = () => {
 
     const tabs = [
         { id: 'general', label: 'Vista General', icon: '📊' },
+        { id: 'asignaciones', label: 'Asignaciones', icon: '📋' },
         { id: 'vehiculos', label: 'Vehículos', icon: '🚗' },
         { id: 'conductores', label: 'Conductores', icon: '👨‍💼' },
         { id: 'mapa', label: 'Mapa', icon: '🗺️' }
@@ -99,6 +101,8 @@ const Dashboard = () => {
         switch (activeTab) {
             case 'general':
                 return <VistaGeneral data={dashboardData} loading={loading} />;
+            case 'asignaciones':
+                return <VistaAsignaciones data={dashboardData} loading={loading} filtro={filtroTemporal} />;
             case 'vehiculos':
                 return <VistaVehiculos data={dashboardData} loading={loading} filtro={filtroTemporal} />;
             case 'conductores':

@@ -1,63 +1,128 @@
 /* src/components/dashboard/VistaGeneral/style.css */
 
 .vistaGeneral {
-    display: flex;
-    flex-direction: column;
-    gap: 2rem;
+    padding: 24px;
+    background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+    min-height: 100vh;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
 }
 
+/* ========== LOADING STATES ========== */
 .loadingContainer {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    min-height: 300px;
-    gap: 1rem;
+    height: 50vh;
     color: #64748b;
 }
 
 .spinner {
-    width: 32px;
-    height: 32px;
-    border: 3px solid #e2e8f0;
-    border-top: 3px solid #3b82f6;
+    width: 48px;
+    height: 48px;
+    border: 4px solid #e2e8f0;
+    border-top-color: #3b82f6;
     border-radius: 50%;
     animation: spin 1s linear infinite;
+    margin-bottom: 16px;
 }
 
 @keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
+    to {
+        transform: rotate(360deg);
+    }
 }
 
-/* Grid de métricas principales */
+/* ========== VIEW TABS ========== */
+.viewTabs {
+    display: flex;
+    gap: 4px;
+    margin-bottom: 24px;
+    background: white;
+    padding: 4px;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+    border: 1px solid #e2e8f0;
+}
+
+.viewTab {
+    flex: 1;
+    padding: 12px 20px;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 14px;
+    color: #64748b;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.viewTab:hover {
+    background: #f1f5f9;
+    color: #334155;
+}
+
+.viewTab.active {
+    background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+    color: white;
+    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.25);
+}
+
+/* ========== METRICS GRID ========== */
 .metricsGrid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 1.5rem;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+    margin-bottom: 32px;
 }
 
-/* Grid de gráficos */
+/* ========== CHARTS GRID ========== */
 .chartsGrid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-    gap: 1.5rem;
+    grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+    gap: 24px;
+    margin-bottom: 32px;
 }
 
 .chartCard {
     background: white;
-    border-radius: 0.75rem;
-    padding: 1.5rem;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
-    border: 1px solid #e2e8f0;
+    border-radius: 16px;
+    padding: 24px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+    border: 1px solid #f1f5f9;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.chartCard::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, #3b82f6, #8b5cf6, #10b981);
+}
+
+.chartCard:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
 }
 
 .chartCard h3 {
-    margin: 0 0 1.5rem 0;
-    font-size: 1.125rem;
-    font-weight: 600;
+    margin: 0 0 20px 0;
+    font-size: 18px;
+    font-weight: 700;
     color: #1e293b;
-    text-align: center;
+    display: flex;
+    align-items: center;
+    gap: 8px;
 }
 
 .chartContainer {
@@ -66,135 +131,578 @@
 }
 
 .wideChart {
-    grid-column: 1 / -1;
+    grid-column: span 2;
 }
 
-/* Sección de alertas */
-.alertasSection {
+@media (max-width: 1200px) {
+    .wideChart {
+        grid-column: span 1;
+    }
+}
+
+/* ========== INDICADORES GRID ========== */
+.indicadoresGrid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    gap: 24px;
+    margin-bottom: 32px;
+}
+
+@media (max-width: 1024px) {
+    .indicadoresGrid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* ========== KPI CARD ========== */
+.kpiCard {
     background: white;
-    border-radius: 0.75rem;
-    padding: 1.5rem;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
-    border: 1px solid #e2e8f0;
+    border-radius: 16px;
+    padding: 28px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+    border: 1px solid #f1f5f9;
+    position: relative;
+    overflow: hidden;
 }
 
-/* Resumen estadístico */
-.resumenSection {
+.kpiCard::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, #10b981, #3b82f6);
+}
+
+.kpiCard h3 {
+    margin: 0 0 24px 0;
+    font-size: 20px;
+    font-weight: 700;
+    color: #1e293b;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.kpiList {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.kpiItem {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.kpiHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.kpiLabel {
+    font-weight: 600;
+    color: #374151;
+    font-size: 14px;
+}
+
+.kpiValue {
+    font-weight: 800;
+    font-size: 24px;
+    color: #1e293b;
+}
+
+.kpiValue.excellent {
+    color: #10b981;
+}
+
+.kpiValue.good {
+    color: #3b82f6;
+}
+
+.kpiValue.warning {
+    color: #f59e0b;
+}
+
+.kpiBar {
+    height: 8px;
+    background: #f1f5f9;
+    border-radius: 4px;
+    overflow: hidden;
+    position: relative;
+}
+
+.kpiProgress {
+    height: 100%;
+    background: linear-gradient(90deg, #10b981, #3b82f6);
+    border-radius: 4px;
+    transition: width 1s ease;
+    position: relative;
+}
+
+.kpiProgress::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.6), transparent);
+    animation: shimmer 2s infinite;
+}
+
+@keyframes shimmer {
+    100% {
+        left: 100%;
+    }
+}
+
+.kpiDescription {
+    color: #64748b;
+    font-size: 12px;
+    line-height: 1.4;
+}
+
+/* ========== SYSTEM HEALTH CARD ========== */
+.systemHealthCard {
     background: white;
-    border-radius: 0.75rem;
-    padding: 1.5rem;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
-    border: 1px solid #e2e8f0;
+    border-radius: 16px;
+    padding: 28px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+    border: 1px solid #f1f5f9;
+    position: relative;
+    overflow: hidden;
 }
 
-.resumenSection h3 {
-    margin: 0 0 1.5rem 0;
-    font-size: 1.25rem;
+.systemHealthCard::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, #f59e0b, #ef4444);
+}
+
+.systemHealthCard h3 {
+    margin: 0 0 20px 0;
+    font-size: 18px;
+    font-weight: 700;
+    color: #1e293b;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.healthIndicator {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.healthStatus {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 16px;
+    border-radius: 12px;
+    background: #f8fafc;
+    border: 2px solid #e2e8f0;
+}
+
+.healthStatus.critico {
+    background: rgba(239, 68, 68, 0.1);
+    border-color: #ef4444;
+}
+
+.healthStatus.atencion {
+    background: rgba(245, 158, 11, 0.1);
+    border-color: #f59e0b;
+}
+
+.healthStatus.bueno {
+    background: rgba(16, 185, 129, 0.1);
+    border-color: #10b981;
+}
+
+.healthIcon {
+    font-size: 24px;
+}
+
+.healthText {
+    font-weight: 700;
+    font-size: 16px;
+    color: #1e293b;
+}
+
+.healthDetails {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.healthItem {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 0;
+    border-bottom: 1px solid #f1f5f9;
+    font-size: 14px;
+}
+
+.healthItem:last-child {
+    border-bottom: none;
+}
+
+.healthItem span:first-child {
+    color: #64748b;
+}
+
+.healthItem span:last-child {
     font-weight: 600;
     color: #1e293b;
 }
 
+/* ========== PRODUCTIVITY CARD ========== */
+.productivityCard {
+    background: white;
+    border-radius: 16px;
+    padding: 28px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+    border: 1px solid #f1f5f9;
+    position: relative;
+    overflow: hidden;
+}
+
+.productivityCard::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, #8b5cf6, #3b82f6);
+}
+
+.productivityCard h3 {
+    margin: 0 0 20px 0;
+    font-size: 18px;
+    font-weight: 700;
+    color: #1e293b;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.productivityGrid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+}
+
+.productivityItem {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 16px;
+    background: #f8fafc;
+    border-radius: 12px;
+    border: 1px solid #e2e8f0;
+    transition: all 0.2s ease;
+}
+
+.productivityItem:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.productivityIcon {
+    font-size: 24px;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.productivityData {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.productivityValue {
+    font-weight: 800;
+    font-size: 20px;
+    color: #1e293b;
+}
+
+.productivityLabel {
+    font-size: 12px;
+    color: #64748b;
+    font-weight: 500;
+}
+
+/* ========== ALERTAS SECTION ========== */
+.alertasSection {
+    margin-bottom: 32px;
+}
+
+/* ========== RESUMEN SECTION ========== */
+.resumenSection {
+    background: white;
+    border-radius: 16px;
+    padding: 28px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+    border: 1px solid #f1f5f9;
+    position: relative;
+    overflow: hidden;
+}
+
+.resumenSection::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, #10b981, #3b82f6, #8b5cf6);
+}
+
+.resumenSection h3 {
+    margin: 0 0 24px 0;
+    font-size: 20px;
+    font-weight: 700;
+    color: #1e293b;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
 .resumenGrid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 1.5rem;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 24px;
 }
 
 .resumenItem {
     display: flex;
     flex-direction: column;
-    gap: 0.5rem;
+    gap: 12px;
+    padding: 20px;
+    background: #f8fafc;
+    border-radius: 12px;
+    border: 1px solid #e2e8f0;
+    transition: all 0.2s ease;
+}
+
+.resumenItem:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
 }
 
 .resumenLabel {
-    font-size: 0.875rem;
+    font-weight: 600;
     color: #64748b;
-    font-weight: 500;
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
 }
 
 .resumenValue {
-    font-size: 1.5rem;
-    font-weight: 700;
+    font-weight: 800;
+    font-size: 28px;
     color: #1e293b;
+    margin: 4px 0;
+}
+
+.resumenDescription {
+    color: #64748b;
+    font-size: 12px;
+    line-height: 1.4;
+    margin-top: 8px;
 }
 
 .progressBar {
-    width: 100%;
     height: 8px;
     background: #e2e8f0;
     border-radius: 4px;
     overflow: hidden;
+    position: relative;
 }
 
 .progressFill {
     height: 100%;
-    background: linear-gradient(90deg, #3b82f6, #1d4ed8);
+    background: linear-gradient(90deg, #10b981, #3b82f6);
     border-radius: 4px;
-    transition: width 0.5s ease;
+    transition: width 1.5s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
 }
 
-/* Responsive Design */
-@media (max-width: 1024px) {
-    .chartsGrid {
-        grid-template-columns: 1fr;
-    }
-    
-    .wideChart {
-        grid-column: 1;
+.progressFill::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.6), transparent);
+    animation: progressShimmer 2s infinite;
+}
+
+@keyframes progressShimmer {
+    100% {
+        left: 100%;
     }
 }
 
+/* ========== RESPONSIVE DESIGN ========== */
 @media (max-width: 768px) {
     .vistaGeneral {
-        gap: 1.5rem;
+        padding: 16px;
     }
-    
+
     .metricsGrid {
-        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-        gap: 1rem;
+        grid-template-columns: 1fr;
+        gap: 16px;
     }
-    
+
     .chartsGrid {
-        gap: 1rem;
+        grid-template-columns: 1fr;
+        gap: 20px;
     }
-    
+
     .chartCard {
-        padding: 1rem;
+        padding: 20px;
     }
-    
+
     .chartContainer {
         height: 250px;
     }
-    
+
+    .viewTabs {
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    .viewTab {
+        padding: 16px;
+        text-align: center;
+    }
+
+    .productivityGrid {
+        grid-template-columns: 1fr;
+    }
+
     .resumenGrid {
         grid-template-columns: 1fr;
-        gap: 1rem;
     }
-    
+
+    .kpiCard,
+    .systemHealthCard,
+    .productivityCard,
     .resumenSection {
-        padding: 1rem;
-    }
-    
-    .alertasSection {
-        padding: 1rem;
+        padding: 20px;
     }
 }
 
 @media (max-width: 480px) {
-    .metricsGrid {
-        grid-template-columns: 1fr;
+    .vistaGeneral {
+        padding: 12px;
     }
-    
+
+    .chartCard {
+        padding: 16px;
+    }
+
     .chartContainer {
         height: 200px;
     }
-    
-    .chartCard h3 {
-        font-size: 1rem;
-        margin-bottom: 1rem;
-    }
-    
+
     .resumenValue {
-        font-size: 1.25rem;
+        font-size: 24px;
+    }
+
+    .kpiValue {
+        font-size: 20px;
+    }
+
+    .productivityValue {
+        font-size: 18px;
+    }
+}
+
+/* ========== UTILITY CLASSES ========== */
+.fadeIn {
+    animation: fadeIn 0.6s ease-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.slideIn {
+    animation: slideIn 0.4s ease-out;
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateX(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* ========== HOVER EFFECTS ========== */
+.chartCard:hover h3 {
+    color: #3b82f6;
+    transition: color 0.2s ease;
+}
+
+.kpiItem:hover .kpiValue {
+    transform: scale(1.05);
+    transition: transform 0.2s ease;
+}
+
+.resumenItem:hover .resumenValue {
+    color: #3b82f6;
+    transition: color 0.2s ease;
+}
+
+/* ========== PRINT STYLES ========== */
+@media print {
+    .vistaGeneral {
+        background: white;
+        padding: 0;
+    }
+
+    .chartCard,
+    .kpiCard,
+    .systemHealthCard,
+    .productivityCard,
+    .resumenSection {
+        box-shadow: none;
+        border: 1px solid #e2e8f0;
+        break-inside: avoid;
+    }
+
+    .viewTabs {
+        display: none;
     }
 }

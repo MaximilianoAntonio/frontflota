@@ -28,19 +28,10 @@ const MapaInteractivo = ({
 
   // Inicializar mapa
   useEffect(() => {
-    console.log('useEffect de inicialización ejecutado');
-    console.log('mapRef.current:', mapRef.current);
-    console.log('mapaInstancia.current:', mapaInstancia.current);
-    
     if (!mapaInstancia.current && mapRef.current) {
       console.log('Inicializando mapa...');
       
       try {
-        // Asegurar que el elemento tenga dimensiones
-        mapRef.current.style.height = '500px';
-        mapRef.current.style.width = '100%';
-        mapRef.current.style.position = 'relative';
-        
         // Crear instancia del mapa
         mapaInstancia.current = L.map(mapRef.current, {
           center: [centro.lat, centro.lng],
@@ -55,47 +46,27 @@ const MapaInteractivo = ({
           attributionControl: true
         });
 
-        console.log('Instancia de mapa creada:', mapaInstancia.current);
-
         // Agregar capa de tiles
-        const tileLayer = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
           attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
           maxZoom: 19,
           tileSize: 256,
           zoomOffset: 0
-        });
-        
-        tileLayer.addTo(mapaInstancia.current);
-        console.log('Capa de tiles agregada');
+        }).addTo(mapaInstancia.current);
 
-        // Forzar actualización del tamaño del mapa múltiples veces
+        console.log('Mapa inicializado correctamente');
+        
+        // Forzar actualización del tamaño del mapa
         setTimeout(() => {
           if (mapaInstancia.current) {
             mapaInstancia.current.invalidateSize();
-            console.log('Primera actualización de tamaño del mapa');
+            console.log('Tamaño del mapa actualizado');
           }
         }, 100);
-        
-        setTimeout(() => {
-          if (mapaInstancia.current) {
-            mapaInstancia.current.invalidateSize();
-            console.log('Segunda actualización de tamaño del mapa');
-          }
-        }, 500);
-        
-        setTimeout(() => {
-          if (mapaInstancia.current) {
-            mapaInstancia.current.invalidateSize();
-            mapaInstancia.current.setView([centro.lat, centro.lng], zoom);
-            console.log('Tercera actualización y centrado del mapa');
-          }
-        }, 1000);
         
       } catch (error) {
         console.error('Error inicializando mapa:', error);
       }
-    } else {
-      console.log('Mapa ya inicializado o ref no disponible');
     }
 
     // Cleanup function
@@ -159,20 +130,21 @@ const MapaInteractivo = ({
 
           // Marcador de inicio
           const markerInicio = L.marker([inicio.lat, inicio.lng], {
-            title: 'Origen - ' + (asignacion.vehiculo?.patente || 'Sin vehículo')
+            title: `Origen - ${asignacion.vehiculo?.patente || 'Sin vehículo'}`
           }).addTo(map);
           
-          const popupContentInicio = '<div class="' + style.popupContent + '">' +
-            '<h4>🚚 Punto de Inicio</h4>' +
-            '<p><strong>Origen:</strong> ' + (asignacion.origen_descripcion || 'Sin información') + '</p>' +
-            '<p><strong>Vehículo:</strong> ' + (asignacion.vehiculo?.patente || 'No asignado') + '</p>' +
-            '<p><strong>Conductor:</strong> ' + (asignacion.conductor ? 
-              (asignacion.conductor.nombre || '') + ' ' + (asignacion.conductor.apellido || '') : 
-              'No asignado') + '</p>' +
-            '<p><strong>Estado:</strong> <span class="' + (style[asignacion.estado] || '') + '">' + (asignacion.estado || 'Sin estado') + '</span></p>' +
-            '</div>';
+          markerInicio.bindPopup(`
+            <div class="${style.popupContent}">
+              <h4>🚚 Punto de Inicio</h4>
+              <p><strong>Origen:</strong> ${asignacion.origen_descripcion || 'Sin información'}</p>
+              <p><strong>Vehículo:</strong> ${asignacion.vehiculo?.patente || 'No asignado'}</p>
+              <p><strong>Conductor:</strong> ${asignacion.conductor ? 
+                `${asignacion.conductor.nombre || ''} ${asignacion.conductor.apellido || ''}`.trim() : 
+                'No asignado'}</p>
+              <p><strong>Estado:</strong> <span class="${style[asignacion.estado] || ''}">${asignacion.estado || 'Sin estado'}</span></p>
+            </div>
+          `);
           
-          markerInicio.bindPopup(popupContentInicio);
           markerInicio.on('click', () => {
             console.log('Marcador de inicio clickeado:', asignacion);
             onAsignacionSelect(asignacion);
@@ -182,18 +154,19 @@ const MapaInteractivo = ({
 
           // Marcador de destino
           const markerFin = L.marker([fin.lat, fin.lng], {
-            title: 'Destino - ' + (asignacion.vehiculo?.patente || 'Sin vehículo')
+            title: `Destino - ${asignacion.vehiculo?.patente || 'Sin vehículo'}`
           }).addTo(map);
           
-          const popupContentFin = '<div class="' + style.popupContent + '">' +
-            '<h4>🎯 Punto de Destino</h4>' +
-            '<p><strong>Destino:</strong> ' + (asignacion.destino_descripcion || 'Sin información') + '</p>' +
-            '<p><strong>Vehículo:</strong> ' + (asignacion.vehiculo?.patente || 'No asignado') + '</p>' +
-            '<p><strong>Descripción:</strong> ' + (asignacion.descripcion || 'Sin información') + '</p>' +
-            '<p><strong>Estado:</strong> <span class="' + (style[asignacion.estado] || '') + '">' + (asignacion.estado || 'Sin estado') + '</span></p>' +
-            '</div>';
+          markerFin.bindPopup(`
+            <div class="${style.popupContent}">
+              <h4>🎯 Punto de Destino</h4>
+              <p><strong>Destino:</strong> ${asignacion.destino_descripcion || 'Sin información'}</p>
+              <p><strong>Vehículo:</strong> ${asignacion.vehiculo?.patente || 'No asignado'}</p>
+              <p><strong>Descripción:</strong> ${asignacion.descripcion || 'Sin información'}</p>
+              <p><strong>Estado:</strong> <span class="${style[asignacion.estado] || ''}">${asignacion.estado || 'Sin estado'}</span></p>
+            </div>
+          `);
           
-          markerFin.bindPopup(popupContentFin);
           markerFin.on('click', () => {
             console.log('Marcador de destino clickeado:', asignacion);
             onAsignacionSelect(asignacion);
@@ -212,18 +185,19 @@ const MapaInteractivo = ({
               title: asignacion.vehiculo?.patente || 'Asignación'
             }).addTo(map);
             
-            const popupContentSimple = '<div class="' + style.popupContent + '">' +
-              '<h4>📍 Asignación</h4>' +
-              '<p><strong>Origen:</strong> ' + (asignacion.origen_descripcion || 'Sin información') + '</p>' +
-              '<p><strong>Destino:</strong> ' + (asignacion.destino_descripcion || 'Sin información') + '</p>' +
-              '<p><strong>Vehículo:</strong> ' + (asignacion.vehiculo?.patente || 'No asignado') + '</p>' +
-              '<p><strong>Conductor:</strong> ' + (asignacion.conductor ? 
-                (asignacion.conductor.nombre || '') + ' ' + (asignacion.conductor.apellido || '') : 
-                'No asignado') + '</p>' +
-              '<p><strong>Estado:</strong> <span class="' + (style[asignacion.estado] || '') + '">' + (asignacion.estado || 'Sin estado') + '</span></p>' +
-              '</div>';
+            marker.bindPopup(`
+              <div class="${style.popupContent}">
+                <h4>📍 Asignación</h4>
+                <p><strong>Origen:</strong> ${asignacion.origen_descripcion || 'Sin información'}</p>
+                <p><strong>Destino:</strong> ${asignacion.destino_descripcion || 'Sin información'}</p>
+                <p><strong>Vehículo:</strong> ${asignacion.vehiculo?.patente || 'No asignado'}</p>
+                <p><strong>Conductor:</strong> ${asignacion.conductor ? 
+                  `${asignacion.conductor.nombre || ''} ${asignacion.conductor.apellido || ''}`.trim() : 
+                  'No asignado'}</p>
+                <p><strong>Estado:</strong> <span class="${style[asignacion.estado] || ''}">${asignacion.estado || 'Sin estado'}</span></p>
+              </div>
+            `);
             
-            marker.bindPopup(popupContentSimple);
             marker.on('click', () => {
               console.log('Marcador simple clickeado:', asignacion);
               onAsignacionSelect(asignacion);
@@ -253,25 +227,6 @@ const MapaInteractivo = ({
 
   }, [asignaciones, vistaMapa, filtros, onAsignacionSelect]);
 
-  // Efecto adicional para observar cambios en el DOM y forzar redimensionamiento
-  useEffect(() => {
-    if (mapaInstancia.current) {
-      console.log('Forzando redimensionamiento del mapa después de cambios');
-      const interval = setInterval(() => {
-        if (mapaInstancia.current && mapRef.current) {
-          mapaInstancia.current.invalidateSize();
-        }
-      }, 1000);
-
-      // Limpiar el intervalo después de 5 segundos
-      setTimeout(() => {
-        clearInterval(interval);
-      }, 5000);
-
-      return () => clearInterval(interval);
-    }
-  }, [asignaciones]);
-
   // Actualizar centro del mapa
   useEffect(() => {
     if (mapaInstancia.current && centro) {
@@ -285,27 +240,12 @@ const MapaInteractivo = ({
         ref={mapRef} 
         className={style.leafletMap}
         style={{ 
-          height: '500px', 
+          height: '100%', 
           width: '100%',
           position: 'relative',
-          zIndex: 1,
-          minHeight: '500px',
-          backgroundColor: '#f0f0f0' // Para ver si el div está ahí
+          zIndex: 1
         }}
-      >
-        {/* Fallback content mientras carga el mapa */}
-        <div style={{
-          position: 'absolute',
-          top: '50%',
-          left: '50%',
-          transform: 'translate(-50%, -50%)',
-          color: '#666',
-          fontSize: '14px',
-          zIndex: 1000
-        }}>
-          Cargando mapa...
-        </div>
-      </div>
+      ></div>
       
       {/* Leyenda */}
       <div className={style.leyenda}>
@@ -338,3 +278,4 @@ const MapaInteractivo = ({
 };
 
 export default MapaInteractivo;
+ 
